@@ -1,0 +1,652 @@
+SQL> rem set operations:---    Union, Union all, intersect, minus
+SQL> rem union all with duplicates
+SQL> desc job_history;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPLOYEE_ID                               NOT NULL NUMBER(6)
+ START_DATE                                NOT NULL DATE
+ END_DATE                                  NOT NULL DATE
+ JOB_ID                                    NOT NULL VARCHAR2(10)
+ DEPARTMENT_ID                                      NUMBER(4)
+
+SQL> select job_id
+  2  union
+  3  
+SQL> 
+SQL> select job_id from employees
+  2  union
+  3  select job_id from job_history;
+
+JOB_ID                                                                          
+----------                                                                      
+AC_ACCOUNT                                                                      
+AC_MGR                                                                          
+AD_ASST                                                                         
+AD_PRES                                                                         
+AD_VP                                                                           
+FI_ACCOUNT                                                                      
+FI_MGR                                                                          
+HR_REP                                                                          
+IT_PROG                                                                         
+MK_MAN                                                                          
+MK_REP                                                                          
+
+JOB_ID                                                                          
+----------                                                                      
+PR_REP                                                                          
+PU_CLERK                                                                        
+PU_MAN                                                                          
+SA_MAN                                                                          
+SA_REP                                                                          
+SH_CLERK                                                                        
+ST_CLERK                                                                        
+ST_MAN                                                                          
+
+19 rows selected.
+
+SQL> set lines 250
+SQL> set pages 200
+SQL> select job_id from employees
+  2  union all
+  3  select job_if from job_history;
+select job_if from job_history
+       *
+ERROR at line 3:
+ORA-00904: "JOB_IF": invalid identifier 
+
+
+SQL> select job_id from employees
+  2  union all
+  3  select job_id from job_history;
+
+JOB_ID                                                                                                                                                                                                                                                    
+----------                                                                                                                                                                                                                                                
+AC_ACCOUNT                                                                                                                                                                                                                                                
+AC_MGR                                                                                                                                                                                                                                                    
+AD_ASST                                                                                                                                                                                                                                                   
+AD_PRES                                                                                                                                                                                                                                                   
+AD_VP                                                                                                                                                                                                                                                     
+AD_VP                                                                                                                                                                                                                                                     
+FI_ACCOUNT                                                                                                                                                                                                                                                
+FI_ACCOUNT                                                                                                                                                                                                                                                
+FI_ACCOUNT                                                                                                                                                                                                                                                
+FI_ACCOUNT                                                                                                                                                                                                                                                
+FI_ACCOUNT                                                                                                                                                                                                                                                
+FI_MGR                                                                                                                                                                                                                                                    
+HR_REP                                                                                                                                                                                                                                                    
+IT_PROG                                                                                                                                                                                                                                                   
+IT_PROG                                                                                                                                                                                                                                                   
+IT_PROG                                                                                                                                                                                                                                                   
+IT_PROG                                                                                                                                                                                                                                                   
+IT_PROG                                                                                                                                                                                                                                                   
+MK_MAN                                                                                                                                                                                                                                                    
+MK_REP                                                                                                                                                                                                                                                    
+PR_REP                                                                                                                                                                                                                                                    
+PU_CLERK                                                                                                                                                                                                                                                  
+PU_CLERK                                                                                                                                                                                                                                                  
+PU_CLERK                                                                                                                                                                                                                                                  
+PU_CLERK                                                                                                                                                                                                                                                  
+PU_CLERK                                                                                                                                                                                                                                                  
+PU_MAN                                                                                                                                                                                                                                                    
+SA_MAN                                                                                                                                                                                                                                                    
+SA_MAN                                                                                                                                                                                                                                                    
+SA_MAN                                                                                                                                                                                                                                                    
+SA_MAN                                                                                                                                                                                                                                                    
+SA_MAN                                                                                                                                                                                                                                                    
+SA_REP                                                                                                                                                                                                                                                    
+SA_REP                                                                                                                                                                                                                                                    
+SA_REP                                                                                                                                                                                                                                                    
+SA_REP                                                                                                                                                                                                                                                    
+SA_REP                                                                                                                                                                                                                                                    
+SA_REP                                                                                                                                                                                                                                                    
+SA_REP                                                                                                                                                                                                                                                    
+SA_REP                                                                                                                                                                                                                                                    
+SA_REP                                                                                                                                                                                                                                                    
+SA_REP                                                                                                                                                                                                                                                    
+SA_REP                                                                                                                                                                                                                                                    
+SA_REP                                                                                                                                                                                                                                                    
+SA_REP                                                                                                                                                                                                                                                    
+SA_REP                                                                                                                                                                                                                                                    
+SA_REP                                                                                                                                                                                                                                                    
+SA_REP                                                                                                                                                                                                                                                    
+SA_REP                                                                                                                                                                                                                                                    
+SA_REP                                                                                                                                                                                                                                                    
+SA_REP                                                                                                                                                                                                                                                    
+SA_REP                                                                                                                                                                                                                                                    
+SA_REP                                                                                                                                                                                                                                                    
+SA_REP                                                                                                                                                                                                                                                    
+SA_REP                                                                                                                                                                                                                                                    
+SA_REP                                                                                                                                                                                                                                                    
+SA_REP                                                                                                                                                                                                                                                    
+SA_REP                                                                                                                                                                                                                                                    
+SA_REP                                                                                                                                                                                                                                                    
+SA_REP                                                                                                                                                                                                                                                    
+SA_REP                                                                                                                                                                                                                                                    
+SA_REP                                                                                                                                                                                                                                                    
+SH_CLERK                                                                                                                                                                                                                                                  
+SH_CLERK                                                                                                                                                                                                                                                  
+SH_CLERK                                                                                                                                                                                                                                                  
+SH_CLERK                                                                                                                                                                                                                                                  
+SH_CLERK                                                                                                                                                                                                                                                  
+SH_CLERK                                                                                                                                                                                                                                                  
+SH_CLERK                                                                                                                                                                                                                                                  
+SH_CLERK                                                                                                                                                                                                                                                  
+SH_CLERK                                                                                                                                                                                                                                                  
+SH_CLERK                                                                                                                                                                                                                                                  
+SH_CLERK                                                                                                                                                                                                                                                  
+SH_CLERK                                                                                                                                                                                                                                                  
+SH_CLERK                                                                                                                                                                                                                                                  
+SH_CLERK                                                                                                                                                                                                                                                  
+SH_CLERK                                                                                                                                                                                                                                                  
+SH_CLERK                                                                                                                                                                                                                                                  
+SH_CLERK                                                                                                                                                                                                                                                  
+SH_CLERK                                                                                                                                                                                                                                                  
+SH_CLERK                                                                                                                                                                                                                                                  
+SH_CLERK                                                                                                                                                                                                                                                  
+ST_CLERK                                                                                                                                                                                                                                                  
+ST_CLERK                                                                                                                                                                                                                                                  
+ST_CLERK                                                                                                                                                                                                                                                  
+ST_CLERK                                                                                                                                                                                                                                                  
+ST_CLERK                                                                                                                                                                                                                                                  
+ST_CLERK                                                                                                                                                                                                                                                  
+ST_CLERK                                                                                                                                                                                                                                                  
+ST_CLERK                                                                                                                                                                                                                                                  
+ST_CLERK                                                                                                                                                                                                                                                  
+ST_CLERK                                                                                                                                                                                                                                                  
+ST_CLERK                                                                                                                                                                                                                                                  
+ST_CLERK                                                                                                                                                                                                                                                  
+ST_CLERK                                                                                                                                                                                                                                                  
+ST_CLERK                                                                                                                                                                                                                                                  
+ST_CLERK                                                                                                                                                                                                                                                  
+ST_CLERK                                                                                                                                                                                                                                                  
+ST_CLERK                                                                                                                                                                                                                                                  
+ST_CLERK                                                                                                                                                                                                                                                  
+ST_CLERK                                                                                                                                                                                                                                                  
+ST_CLERK                                                                                                                                                                                                                                                  
+ST_MAN                                                                                                                                                                                                                                                    
+ST_MAN                                                                                                                                                                                                                                                    
+ST_MAN                                                                                                                                                                                                                                                    
+ST_MAN                                                                                                                                                                                                                                                    
+ST_MAN                                                                                                                                                                                                                                                    
+AC_ACCOUNT                                                                                                                                                                                                                                                
+AC_ACCOUNT                                                                                                                                                                                                                                                
+AC_MGR                                                                                                                                                                                                                                                    
+AD_ASST                                                                                                                                                                                                                                                   
+IT_PROG                                                                                                                                                                                                                                                   
+MK_REP                                                                                                                                                                                                                                                    
+SA_MAN                                                                                                                                                                                                                                                    
+SA_REP                                                                                                                                                                                                                                                    
+ST_CLERK                                                                                                                                                                                                                                                  
+ST_CLERK                                                                                                                                                                                                                                                  
+
+117 rows selected.
+
+SQL> select job_id from employees
+  2  intersect
+  3  select job_id from job_history order by 1;
+
+JOB_ID                                                                                                                                                                                                                                                    
+----------                                                                                                                                                                                                                                                
+AC_ACCOUNT                                                                                                                                                                                                                                                
+AC_MGR                                                                                                                                                                                                                                                    
+AD_ASST                                                                                                                                                                                                                                                   
+IT_PROG                                                                                                                                                                                                                                                   
+MK_REP                                                                                                                                                                                                                                                    
+SA_MAN                                                                                                                                                                                                                                                    
+SA_REP                                                                                                                                                                                                                                                    
+ST_CLERK                                                                                                                                                                                                                                                  
+
+8 rows selected.
+
+SQL> rem default order by
+SQL> rem same data type with same order
+SQL> select job_id from employees
+  2  minus
+  3  select job_id from job_history;
+
+JOB_ID                                                                                                                                                                                                                                                    
+----------                                                                                                                                                                                                                                                
+AD_PRES                                                                                                                                                                                                                                                   
+AD_VP                                                                                                                                                                                                                                                     
+FI_ACCOUNT                                                                                                                                                                                                                                                
+FI_MGR                                                                                                                                                                                                                                                    
+HR_REP                                                                                                                                                                                                                                                    
+MK_MAN                                                                                                                                                                                                                                                    
+PR_REP                                                                                                                                                                                                                                                    
+PU_CLERK                                                                                                                                                                                                                                                  
+PU_MAN                                                                                                                                                                                                                                                    
+SH_CLERK                                                                                                                                                                                                                                                  
+ST_MAN                                                                                                                                                                                                                                                    
+
+11 rows selected.
+
+SQL> select job_id,employee_id from employees
+  2  minus
+  3  select employee_id,job_id from job_history;
+select job_id,employee_id from employees
+       *
+ERROR at line 1:
+ORA-01790: expression must have same datatype as corresponding expression 
+
+
+SQL> select job_id,employee_id from employees
+  2  minus
+  3  select job_id,employee_id from job_history;
+
+JOB_ID     EMPLOYEE_ID                                                                                                                                                                                                                                    
+---------- -----------                                                                                                                                                                                                                                    
+AC_ACCOUNT         206                                                                                                                                                                                                                                    
+AC_MGR             205                                                                                                                                                                                                                                    
+AD_PRES            100                                                                                                                                                                                                                                    
+AD_VP              101                                                                                                                                                                                                                                    
+AD_VP              102                                                                                                                                                                                                                                    
+FI_ACCOUNT         109                                                                                                                                                                                                                                    
+FI_ACCOUNT         110                                                                                                                                                                                                                                    
+FI_ACCOUNT         111                                                                                                                                                                                                                                    
+FI_ACCOUNT         112                                                                                                                                                                                                                                    
+FI_ACCOUNT         113                                                                                                                                                                                                                                    
+FI_MGR             108                                                                                                                                                                                                                                    
+HR_REP             203                                                                                                                                                                                                                                    
+IT_PROG            103                                                                                                                                                                                                                                    
+IT_PROG            104                                                                                                                                                                                                                                    
+IT_PROG            105                                                                                                                                                                                                                                    
+IT_PROG            106                                                                                                                                                                                                                                    
+IT_PROG            107                                                                                                                                                                                                                                    
+MK_MAN             201                                                                                                                                                                                                                                    
+MK_REP             202                                                                                                                                                                                                                                    
+PR_REP             204                                                                                                                                                                                                                                    
+PU_CLERK           115                                                                                                                                                                                                                                    
+PU_CLERK           116                                                                                                                                                                                                                                    
+PU_CLERK           117                                                                                                                                                                                                                                    
+PU_CLERK           118                                                                                                                                                                                                                                    
+PU_CLERK           119                                                                                                                                                                                                                                    
+PU_MAN             114                                                                                                                                                                                                                                    
+SA_MAN             145                                                                                                                                                                                                                                    
+SA_MAN             146                                                                                                                                                                                                                                    
+SA_MAN             147                                                                                                                                                                                                                                    
+SA_MAN             148                                                                                                                                                                                                                                    
+SA_MAN             149                                                                                                                                                                                                                                    
+SA_REP             150                                                                                                                                                                                                                                    
+SA_REP             151                                                                                                                                                                                                                                    
+SA_REP             152                                                                                                                                                                                                                                    
+SA_REP             153                                                                                                                                                                                                                                    
+SA_REP             154                                                                                                                                                                                                                                    
+SA_REP             155                                                                                                                                                                                                                                    
+SA_REP             156                                                                                                                                                                                                                                    
+SA_REP             157                                                                                                                                                                                                                                    
+SA_REP             158                                                                                                                                                                                                                                    
+SA_REP             159                                                                                                                                                                                                                                    
+SA_REP             160                                                                                                                                                                                                                                    
+SA_REP             161                                                                                                                                                                                                                                    
+SA_REP             162                                                                                                                                                                                                                                    
+SA_REP             163                                                                                                                                                                                                                                    
+SA_REP             164                                                                                                                                                                                                                                    
+SA_REP             165                                                                                                                                                                                                                                    
+SA_REP             166                                                                                                                                                                                                                                    
+SA_REP             167                                                                                                                                                                                                                                    
+SA_REP             168                                                                                                                                                                                                                                    
+SA_REP             169                                                                                                                                                                                                                                    
+SA_REP             170                                                                                                                                                                                                                                    
+SA_REP             171                                                                                                                                                                                                                                    
+SA_REP             172                                                                                                                                                                                                                                    
+SA_REP             173                                                                                                                                                                                                                                    
+SA_REP             174                                                                                                                                                                                                                                    
+SA_REP             175                                                                                                                                                                                                                                    
+SA_REP             177                                                                                                                                                                                                                                    
+SA_REP             178                                                                                                                                                                                                                                    
+SA_REP             179                                                                                                                                                                                                                                    
+SH_CLERK           180                                                                                                                                                                                                                                    
+SH_CLERK           181                                                                                                                                                                                                                                    
+SH_CLERK           182                                                                                                                                                                                                                                    
+SH_CLERK           183                                                                                                                                                                                                                                    
+SH_CLERK           184                                                                                                                                                                                                                                    
+SH_CLERK           185                                                                                                                                                                                                                                    
+SH_CLERK           186                                                                                                                                                                                                                                    
+SH_CLERK           187                                                                                                                                                                                                                                    
+SH_CLERK           188                                                                                                                                                                                                                                    
+SH_CLERK           189                                                                                                                                                                                                                                    
+SH_CLERK           190                                                                                                                                                                                                                                    
+SH_CLERK           191                                                                                                                                                                                                                                    
+SH_CLERK           192                                                                                                                                                                                                                                    
+SH_CLERK           193                                                                                                                                                                                                                                    
+SH_CLERK           194                                                                                                                                                                                                                                    
+SH_CLERK           195                                                                                                                                                                                                                                    
+SH_CLERK           196                                                                                                                                                                                                                                    
+SH_CLERK           197                                                                                                                                                                                                                                    
+SH_CLERK           198                                                                                                                                                                                                                                    
+SH_CLERK           199                                                                                                                                                                                                                                    
+ST_CLERK           125                                                                                                                                                                                                                                    
+ST_CLERK           126                                                                                                                                                                                                                                    
+ST_CLERK           127                                                                                                                                                                                                                                    
+ST_CLERK           128                                                                                                                                                                                                                                    
+ST_CLERK           129                                                                                                                                                                                                                                    
+ST_CLERK           130                                                                                                                                                                                                                                    
+ST_CLERK           131                                                                                                                                                                                                                                    
+ST_CLERK           132                                                                                                                                                                                                                                    
+ST_CLERK           133                                                                                                                                                                                                                                    
+ST_CLERK           134                                                                                                                                                                                                                                    
+ST_CLERK           135                                                                                                                                                                                                                                    
+ST_CLERK           136                                                                                                                                                                                                                                    
+ST_CLERK           137                                                                                                                                                                                                                                    
+ST_CLERK           138                                                                                                                                                                                                                                    
+ST_CLERK           139                                                                                                                                                                                                                                    
+ST_CLERK           140                                                                                                                                                                                                                                    
+ST_CLERK           141                                                                                                                                                                                                                                    
+ST_CLERK           142                                                                                                                                                                                                                                    
+ST_CLERK           143                                                                                                                                                                                                                                    
+ST_CLERK           144                                                                                                                                                                                                                                    
+ST_MAN             120                                                                                                                                                                                                                                    
+ST_MAN             121                                                                                                                                                                                                                                    
+ST_MAN             122                                                                                                                                                                                                                                    
+ST_MAN             123                                                                                                                                                                                                                                    
+ST_MAN             124                                                                                                                                                                                                                                    
+
+105 rows selected.
+
+SQL> select job_id,employee_id from employees
+  2  intersect
+  3  select job_id,employee_id from job_history;
+
+JOB_ID     EMPLOYEE_ID                                                                                                                                                                                                                                    
+---------- -----------                                                                                                                                                                                                                                    
+AD_ASST            200                                                                                                                                                                                                                                    
+SA_REP             176                                                                                                                                                                                                                                    
+
+SQL> rem DML and DDl Statement
+SQL> rem create table is autocommit DDL Statement
+SQL> rem create,alter,drop,rename,truncate DDL statmnt
+SQL> rem insert into tiger values (select id,name from tiger)
+SQL> rem ddl is autocommit
+SQL> rem flashback can be used to recover from Recycle bin
+SQL> rem purge is used to delete permanently
+SQL> show recyclebin;
+SQL> show recyclebin
+SQL> rem drop table tablename purge
+SQL> rem delete from tablename
+SQL> select rowid,rownum,first_name from employees;
+
+ROWID                  ROWNUM FIRST_NAME                                                                                                                                                                                                                  
+------------------ ---------- --------------------                                                                                                                                                                                                        
+AAAR25AADAAALXdABK          1 Ellen                                                                                                                                                                                                                       
+AAAR25AADAAALXdABC          2 Sundar                                                                                                                                                                                                                      
+AAAR25AADAAALXdAAe          3 Mozhe                                                                                                                                                                                                                       
+AAAR25AADAAALXdAAF          4 David                                                                                                                                                                                                                       
+AAAR25AADAAALXeAAG          5 Hermann                                                                                                                                                                                                                     
+AAAR25AADAAALXdAAQ          6 Shelli                                                                                                                                                                                                                      
+AAAR25AADAAALXdABD          7 Amit                                                                                                                                                                                                                        
+AAAR25AADAAALXdABI          8 Elizabeth                                                                                                                                                                                                                   
+AAAR25AADAAALXdABc          9 Sarah                                                                                                                                                                                                                       
+AAAR25AADAAALXdAAz         10 David                                                                                                                                                                                                                       
+AAAR25AADAAALXdAAd         11 Laura                                                                                                                                                                                                                       
+AAAR25AADAAALXdABF         12 Harrison                                                                                                                                                                                                                    
+AAAR25AADAAALXdABV         13 Alexis                                                                                                                                                                                                                      
+AAAR25AADAAALXdABX         14 Anthony                                                                                                                                                                                                                     
+AAAR25AADAAALXdAAw         15 Gerald                                                                                                                                                                                                                      
+AAAR25AADAAALXdAA2         16 Nanette                                                                                                                                                                                                                     
+AAAR25AADAAALXdAAK         17 John                                                                                                                                                                                                                        
+AAAR25AADAAALXdABY         18 Kelly                                                                                                                                                                                                                       
+AAAR25AADAAALXdAAT         19 Karen                                                                                                                                                                                                                       
+AAAR25AADAAALXdAAq         20 Curtis                                                                                                                                                                                                                      
+AAAR25AADAAALXdAAC         21 Lex                                                                                                                                                                                                                         
+AAAR25AADAAALXdABW         22 Julia                                                                                                                                                                                                                       
+AAAR25AADAAALXdABZ         23 Jennifer                                                                                                                                                                                                                    
+AAAR25AADAAALXdAA8         24 Louise                                                                                                                                                                                                                      
+AAAR25AADAAALXdAAE         25 Bruce                                                                                                                                                                                                                       
+AAAR25AADAAALXdAAv         26 Alberto                                                                                                                                                                                                                     
+AAAR25AADAAALXdABd         27 Britney                                                                                                                                                                                                                     
+AAAR25AADAAALXdAAJ         28 Daniel                                                                                                                                                                                                                      
+AAAR25AADAAALXeAAE         29 Pat                                                                                                                                                                                                                         
+AAAR25AADAAALXdABh         30 Kevin                                                                                                                                                                                                                       
+AAAR25AADAAALXdABR         31 Jean                                                                                                                                                                                                                        
+AAAR25AADAAALXdABG         32 Tayler                                                                                                                                                                                                                      
+AAAR25AADAAALXdAAV         33 Adam                                                                                                                                                                                                                        
+AAAR25AADAAALXdABa         34 Timothy                                                                                                                                                                                                                     
+AAAR25AADAAALXdAAj         35 Ki                                                                                                                                                                                                                          
+AAAR25AADAAALXdABT         36 Girard                                                                                                                                                                                                                      
+AAAR25AADAAALXeAAI         37 William                                                                                                                                                                                                                     
+AAAR25AADAAALXeAAB         38 Douglas                                                                                                                                                                                                                     
+AAAR25AADAAALXdABO         39 Kimberely                                                                                                                                                                                                                   
+AAAR25AADAAALXdAAI         40 Nancy                                                                                                                                                                                                                       
+AAAR25AADAAALXdAA/         41 Danielle                                                                                                                                                                                                                    
+AAAR25AADAAALXdAA0         42 Peter                                                                                                                                                                                                                       
+AAAR25AADAAALXeAAD         43 Michael                                                                                                                                                                                                                     
+AAAR25AADAAALXeAAH         44 Shelley                                                                                                                                                                                                                     
+AAAR25AADAAALXdAAS         45 Guy                                                                                                                                                                                                                         
+AAAR25AADAAALXdAAD         46 Alexander                                                                                                                                                                                                                   
+AAAR25AADAAALXdABL         47 Alyssa                                                                                                                                                                                                                      
+AAAR25AADAAALXdABP         48 Charles                                                                                                                                                                                                                     
+AAAR25AADAAALXdABf         49 Vance                                                                                                                                                                                                                       
+AAAR25AADAAALXdAAW         50 Payam                                                                                                                                                                                                                       
+AAAR25AADAAALXdAAP         51 Alexander                                                                                                                                                                                                                   
+AAAR25AADAAALXdAA4         52 Janette                                                                                                                                                                                                                     
+AAAR25AADAAALXdAAA         53 Steven                                                                                                                                                                                                                      
+AAAR25AADAAALXdAAB         54 Neena                                                                                                                                                                                                                       
+AAAR25AADAAALXdABJ         55 Sundita                                                                                                                                                                                                                     
+AAAR25AADAAALXdAAl         56 Renske                                                                                                                                                                                                                      
+AAAR25AADAAALXdAAb         57 James                                                                                                                                                                                                                       
+AAAR25AADAAALXdABB         58 David                                                                                                                                                                                                                       
+AAAR25AADAAALXdABN         59 Jack                                                                                                                                                                                                                        
+AAAR25AADAAALXdAAH         60 Diana                                                                                                                                                                                                                       
+AAAR25AADAAALXdAAh         61 Jason                                                                                                                                                                                                                       
+AAAR25AADAAALXdAAc         62 Steven                                                                                                                                                                                                                      
+AAAR25AADAAALXdAAf         63 James                                                                                                                                                                                                                       
+AAAR25AADAAALXdABA         64 Mattea                                                                                                                                                                                                                      
+AAAR25AADAAALXdAAr         65 Randall                                                                                                                                                                                                                     
+AAAR25AADAAALXeAAF         66 Susan                                                                                                                                                                                                                       
+AAAR25AADAAALXdABe         67 Samuel                                                                                                                                                                                                                      
+AAAR25AADAAALXdAA6         68 Allan                                                                                                                                                                                                                       
+AAAR25AADAAALXdAAa         69 Irene                                                                                                                                                                                                                       
+AAAR25AADAAALXdAAY         70 Kevin                                                                                                                                                                                                                       
+AAAR25AADAAALXdAAZ         71 Julia                                                                                                                                                                                                                       
+AAAR25AADAAALXeAAA         72 Donald                                                                                                                                                                                                                      
+AAAR25AADAAALXdAA1         73 Christopher                                                                                                                                                                                                                 
+AAAR25AADAAALXdAAg         74 TJ                                                                                                                                                                                                                          
+AAAR25AADAAALXdABE         75 Lisa                                                                                                                                                                                                                        
+AAAR25AADAAALXdAAu         76 Karen                                                                                                                                                                                                                       
+AAAR25AADAAALXdAAG         77 Valli                                                                                                                                                                                                                       
+AAAR25AADAAALXdAAo         78 Joshua                                                                                                                                                                                                                      
+AAAR25AADAAALXdABb         79 Randall                                                                                                                                                                                                                     
+AAAR25AADAAALXdAAk         80 Hazel                                                                                                                                                                                                                       
+AAAR25AADAAALXdAAN         81 Luis                                                                                                                                                                                                                        
+AAAR25AADAAALXdAAp         82 Trenna                                                                                                                                                                                                                      
+AAAR25AADAAALXdAAO         83 Den                                                                                                                                                                                                                         
+AAAR25AADAAALXdAAi         84 Michael                                                                                                                                                                                                                     
+AAAR25AADAAALXdAAt         85 John                                                                                                                                                                                                                        
+AAAR25AADAAALXdABU         86 Nandita                                                                                                                                                                                                                     
+AAAR25AADAAALXdAAL         87 Ismael                                                                                                                                                                                                                      
+AAAR25AADAAALXdAAn         88 John                                                                                                                                                                                                                        
+AAAR25AADAAALXdAA9         89 Sarath                                                                                                                                                                                                                      
+AAAR25AADAAALXdAA7         90 Lindsey                                                                                                                                                                                                                     
+AAAR25AADAAALXdABH         91 William                                                                                                                                                                                                                     
+AAAR25AADAAALXdAAm         92 Stephen                                                                                                                                                                                                                     
+AAAR25AADAAALXdABS         93 Martha                                                                                                                                                                                                                      
+AAAR25AADAAALXdAA5         94 Patrick                                                                                                                                                                                                                     
+AAAR25AADAAALXdABM         95 Jonathon                                                                                                                                                                                                                    
+AAAR25AADAAALXdABQ         96 Winston                                                                                                                                                                                                                     
+AAAR25AADAAALXdAAR         97 Sigal                                                                                                                                                                                                                       
+AAAR25AADAAALXdAAy         98 Peter                                                                                                                                                                                                                       
+AAAR25AADAAALXdAA3         99 Oliver                                                                                                                                                                                                                      
+AAAR25AADAAALXdAAM        100 Jose Manuel                                                                                                                                                                                                                 
+AAAR25AADAAALXdAAs        101 Peter                                                                                                                                                                                                                       
+AAAR25AADAAALXdAA+        102 Clara                                                                                                                                                                                                                       
+AAAR25AADAAALXdAAX        103 Shanta                                                                                                                                                                                                                      
+AAAR25AADAAALXdABg        104 Alana                                                                                                                                                                                                                       
+AAAR25AADAAALXdAAU        105 Matthew                                                                                                                                                                                                                     
+AAAR25AADAAALXeAAC        106 Jennifer                                                                                                                                                                                                                    
+AAAR25AADAAALXdAAx        107 Eleni                                                                                                                                                                                                                       
+
+107 rows selected.
+
+SQL> rem O B F R    :--  Object Id  Block Id File Id Record id ;____---- 6 3 6 3
+SQL> create table tiger(no number(10), name varchar2(35), hiredt varchar2(21));
+
+Table created.
+
+SQL> desc tiger
+ Name                                                                                                                                            Null?    Type
+ ----------------------------------------------------------------------------------------------------------------------------------------------- -------- ------------------------------------------------------------------------------------------------
+ NO                                                                                                                                                       NUMBER(10)
+ NAME                                                                                                                                                     VARCHAR2(35)
+ HIREDT                                                                                                                                                   VARCHAR2(21)
+
+SQL> create table tiger(no number(10), name varchar2(35), hiredt date);
+create table tiger(no number(10), name varchar2(35), hiredt date)
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> create table tiger(no number(10), name varchar2(35), hiredt date);
+create table tiger(no number(10), name varchar2(35), hiredt date)
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> create table tiger1(id number(20) primary key, fname varchar2(34) not null);
+
+Table created.
+
+SQL> insert into tiger values(1,'skdbfk',3snf);
+insert into tiger values(1,'skdbfk',3snf)
+                                     *
+ERROR at line 1:
+ORA-00917: missing comma 
+
+
+SQL> insert into tiger values(1,'skdbfk',snf);
+insert into tiger values(1,'skdbfk',snf)
+                                    *
+ERROR at line 1:
+ORA-00984: column not allowed here 
+
+
+SQL> insert into tiger values(1,'skdbfk','23snf');
+
+1 row created.
+
+SQL> insert into tiger values(&no,'&name','&hiredate');
+Enter value for no: 2
+Enter value for name: sfdfb
+Enter value for hiredate: 2sfds
+old   1: insert into tiger values(&no,'&name','&hiredate')
+new   1: insert into tiger values(2,'sfdfb','2sfds')
+
+1 row created.
+
+SQL> /
+Enter value for no: 23
+Enter value for name: sdffrdfb
+Enter value for hiredate: es456ugfn
+old   1: insert into tiger values(&no,'&name','&hiredate')
+new   1: insert into tiger values(23,'sdffrdfb','es456ugfn')
+
+1 row created.
+
+SQL> /45
+Enter value for no: 23
+Enter value for name: fsvd
+Enter value for hiredate: fdtuht4
+old   1: insert into tiger values(&no,'&name','&hiredate')
+new   1: insert into tiger values(23,'fsvd','fdtuht4')
+
+1 row created.
+
+SQL> select * from tiger;
+
+        NO NAME                                HIREDT                                                                                                                                                                                                     
+---------- ----------------------------------- ---------------------                                                                                                                                                                                      
+         1 skdbfk                              23snf                                                                                                                                                                                                      
+         2 sfdfb                               2sfds                                                                                                                                                                                                      
+        23 sdffrdfb                            es456ugfn                                                                                                                                                                                                  
+        23 fsvd                                fdtuht4                                                                                                                                                                                                    
+
+SQL> insert into tiger1 values (select no,name from tiger);
+insert into tiger1 values (select no,name from tiger)
+                           *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> insert into tiger1 values<select no,name from tiger);
+insert into tiger1 values<select no,name from tiger)
+                         *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> insert into tiger1 values<select id,name from tiger);
+insert into tiger1 values<select id,name from tiger)
+                         *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> desc tiger1;
+ Name                                                                                                                                            Null?    Type
+ ----------------------------------------------------------------------------------------------------------------------------------------------- -------- ------------------------------------------------------------------------------------------------
+ ID                                                                                                                                              NOT NULL NUMBER(20)
+ FNAME                                                                                                                                           NOT NULL VARCHAR2(34)
+
+SQL> insert into tiger1 <select id,name from tiger);
+insert into tiger1 <select id,name from tiger)
+                   *
+ERROR at line 1:
+ORA-00926: missing VALUES keyword 
+
+
+SQL> insert into tiger1 values <select id,name from tiger);
+insert into tiger1 values <select id,name from tiger)
+                          *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> select * from tiger;
+
+        NO NAME                                HIREDT                                                                                                                                                                                                     
+---------- ----------------------------------- ---------------------                                                                                                                                                                                      
+         1 skdbfk                              23snf                                                                                                                                                                                                      
+         2 sfdfb                               2sfds                                                                                                                                                                                                      
+        23 sdffrdfb                            es456ugfn                                                                                                                                                                                                  
+        23 fsvd                                fdtuht4                                                                                                                                                                                                    
+
+SQL> insert into tiger1 values (select no,name from tiger);
+insert into tiger1 values (select no,name from tiger)
+                           *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> rem Pseudo column
+SQL> insert into tiger1 (select no,name from tiger);
+insert into tiger1 (select no,name from tiger)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (HR.SYS_C008273) violated 
+
+
+SQL> select * from tiger1;
+
+no rows selected
+
+SQL> insert into tiger1 (select no,name from tiger);
+insert into tiger1 (select no,name from tiger)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (HR.SYS_C008273) violated 
+
+
+SQL> delete from tiger where name='fsvd';
+
+1 row deleted.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> insert into tiger1 (select no,name from tiger);
+
+3 rows created.
+
+SQL> spool off

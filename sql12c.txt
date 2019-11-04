@@ -1,0 +1,4 @@
+*select salaries "sal" from employees:  for changing the column name with as it is.
+*double quotes used for column alias only.
+* SQL> select first_name||'        '||last_name  as "  Fullname" from employees ;: for space and concatening ||
+*

@@ -1,0 +1,979 @@
+SQL> rem view is logical expression of table
+SQL> create view emp_view as select first_name,last_name,salary from employees;
+
+View created.
+
+SQL> rem view inside only subquery will be stored
+SQL> create view dep_id as select first_name,last_name,salary,department_id,job_id from employees where department_id=10;
+
+View created.
+
+SQL> desc dep_id;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ FIRST_NAME                                         VARCHAR2(20)
+ LAST_NAME                                 NOT NULL VARCHAR2(25)
+ SALARY                                             NUMBER(8,2)
+ DEPARTMENT_ID                                      NUMBER(4)
+ JOB_ID                                    NOT NULL VARCHAR2(10)
+
+SQL> select * from dep_id;
+
+FIRST_NAME           LAST_NAME                     SALARY DEPARTMENT_ID         
+-------------------- ------------------------- ---------- -------------         
+JOB_ID                                                                          
+----------                                                                      
+Jennifer             Whalen                          4400            10         
+AD_ASST                                                                         
+                                                                                
+
+SQL> create view dep_id as select first_name,last_name,salary,department_id,job_id from employees where department_id=10,20,30,40,50,60,70,80,90,110,100;
+create view dep_id as select first_name,last_name,salary,department_id,job_id from employees where department_id=10,20,30,40,50,60,70,80,90,110,100
+                                                                                                                   *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> select distinct department_id from employees;
+
+DEPARTMENT_ID                                                                   
+-------------                                                                   
+          100                                                                   
+           30                                                                   
+                                                                                
+           90                                                                   
+           20                                                                   
+           70                                                                   
+          110                                                                   
+           50                                                                   
+           80                                                                   
+           40                                                                   
+           60                                                                   
+
+DEPARTMENT_ID                                                                   
+-------------                                                                   
+           10                                                                   
+
+12 rows selected.
+
+SQL> select distinct department_id from employees order by;
+select distinct department_id from employees order by
+                                                    *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> create view dep_id as select first_name,last_name,salary,department_id,job_id from employees where department_id=20;
+create view dep_id as select first_name,last_name,salary,department_id,job_id from employees where department_id=20
+            *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> create view dep20 as select first_name,last_name,salary,department_id,job_id from employees where department_id=20;
+
+View created.
+
+SQL> create view dep30 as select first_name,last_name,salary,department_id,job_id from employees where department_id=30;
+
+View created.
+
+SQL> create view dep40 as select first_name,last_name,salary,department_id,job_id from employees where department_id40;
+create view dep40 as select first_name,last_name,salary,department_id,job_id from employees where department_id40
+                                                                                                                *
+ERROR at line 1:
+ORA-00920: invalid relational operator 
+
+
+SQL> create view dep40 as select first_name,last_name,salary,department_id,job_id from employees where department_id=40;
+
+View created.
+
+SQL> create view dep50 as select first_name,last_name,salary,department_id,job_id from employees where department_id=50;
+
+View created.
+
+SQL> create view dep60 as select first_name,last_name,salary,department_id,job_id from employees where department_id=60;
+
+View created.
+
+SQL> create view dep70 as select first_name,last_name,salary,department_id,job_id from employees where department_id=70;
+
+View created.
+
+SQL> create view dep80 as select first_name,last_name,salary,department_id,job_id from employees where department_id=80;
+
+View created.
+
+SQL> create view dep90 as select first_name,last_name,salary,department_id,job_id from employees where department_id=90;
+
+View created.
+
+SQL> create view dep100 as select first_name,last_name,salary,department_id,job_id from employees where department_id=100;
+
+View created.
+
+SQL> create view dep110 as select first_name,last_name,salary,department_id,job_id from employees where department_id=110;
+
+View created.
+
+SQL> select * from dep110;
+
+FIRST_NAME           LAST_NAME                     SALARY DEPARTMENT_ID         
+-------------------- ------------------------- ---------- -------------         
+JOB_ID                                                                          
+----------                                                                      
+Shelley              Higgins                        12008           110         
+AC_MGR                                                                          
+                                                                                
+William              Gietz                           8300           110         
+AC_ACCOUNT                                                                      
+                                                                                
+
+SQL> desc view
+ERROR:
+ORA-00931: missing identifier 
+
+
+SQL> desc view;
+ERROR:
+ORA-00931: missing identifier 
+
+
+SQL> rem view_;;;;;  SImple view and complex view
+SQL> rem simple view single table and no join group by
+SQL> rem complex view more table and all types and no dml operations
+SQL> rem simple we can do dml operations
+SQL> rem in simple view we can do insert and store it in table
+SQL> select * from hero;
+
+        NO NAME                                            SAL HIREDATE         
+---------- ---------------------------------------- ---------- ---------        
+         1 sdfgbfvgbn                                      333 12-FEB-19        
+         2 sdfgbfvgbn                                     3345 12-FEB-19        
+
+SQL> create view view_hero as select no,name,sal from hero;
+
+View created.
+
+SQL> desc hero;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NO                                        NOT NULL NUMBER(5)
+ NAME                                               VARCHAR2(40)
+ SAL                                                NUMBER(8,2)
+ HIREDATE                                           DATE
+
+SQL> desc view_hero;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NO                                        NOT NULL NUMBER(5)
+ NAME                                               VARCHAR2(40)
+ SAL                                                NUMBER(8,2)
+
+SQL> insert into view_hero values(33,'dfg',5231);
+
+1 row created.
+
+SQL> select * from hero;
+
+        NO NAME                                            SAL HIREDATE         
+---------- ---------------------------------------- ---------- ---------        
+         1 sdfgbfvgbn                                      333 12-FEB-19        
+         2 sdfgbfvgbn                                     3345 12-FEB-19        
+        33 dfg                                            5231 14-FEB-19        
+
+SQL> select * from view_hero;
+
+        NO NAME                                            SAL                  
+---------- ---------------------------------------- ----------                  
+         1 sdfgbfvgbn                                      333                  
+         2 sdfgbfvgbn                                     3345                  
+        33 dfg                                            5231                  
+
+SQL> delete from view_hero where no=2;
+
+1 row deleted.
+
+SQL> select * from hero;
+
+        NO NAME                                            SAL HIREDATE         
+---------- ---------------------------------------- ---------- ---------        
+         1 sdfgbfvgbn                                      333 12-FEB-19        
+        33 dfg                                            5231 14-FEB-19        
+
+SQL> update view view_hero set name='sdvewxf'where id=1;
+update view view_hero set name='sdvewxf'where id=1
+       *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> update view_hero set name='sdvewxf'where id=1;
+update view_hero set name='sdvewxf'where id=1
+                                         *
+ERROR at line 1:
+ORA-00904: "ID": invalid identifier 
+
+
+SQL> update view_hero set name='sdvewxf'where no=1;
+
+1 row updated.
+
+SQL> selct * from view_hero;
+SP2-0734: unknown command beginning "selct * fr..." - rest of line ignored.
+SQL> select * from view_hero;
+
+        NO NAME                                            SAL                  
+---------- ---------------------------------------- ----------                  
+         1 sdvewxf                                         333                  
+        33 dfg                                            5231                  
+
+SQL> select * from hero;
+
+        NO NAME                                            SAL HIREDATE         
+---------- ---------------------------------------- ---------- ---------        
+         1 sdvewxf                                         333 12-FEB-19        
+        33 dfg                                            5231 14-FEB-19        
+
+SQL> Create view V_EMP_DEPT
+  2  
+SQL> as Select e.Employee_name,d.Department_name
+SP2-0734: unknown command beginning "as Select ..." - rest of line ignored.
+SQL> 
+SQL> from Employee e,Department d
+SP2-0734: unknown command beginning "from Emplo..." - rest of line ignored.
+SQL> 
+SQL> create view view_complex as select first_name,region_name from employees join departments using (department_id)
+  2  join locations using (location_id)
+  3  join countries using(country_id)
+  4  join regions using(region_id);
+
+View created.
+
+SQL> desc view_complex
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ FIRST_NAME                                         VARCHAR2(20)
+ REGION_NAME                                        VARCHAR2(25)
+
+SQL> select * from view_complex;
+
+FIRST_NAME           REGION_NAME                                                
+-------------------- -------------------------                                  
+Ellen                Europe                                                     
+Sundar               Europe                                                     
+Mozhe                Americas                                                   
+David                Americas                                                   
+Hermann              Europe                                                     
+Shelli               Americas                                                   
+Amit                 Europe                                                     
+Elizabeth            Europe                                                     
+Sarah                Americas                                                   
+David                Europe                                                     
+Laura                Americas                                                   
+
+FIRST_NAME           REGION_NAME                                                
+-------------------- -------------------------                                  
+Harrison             Europe                                                     
+Alexis               Americas                                                   
+Anthony              Americas                                                   
+Gerald               Europe                                                     
+Nanette              Europe                                                     
+John                 Americas                                                   
+Kelly                Americas                                                   
+Karen                Americas                                                   
+Curtis               Americas                                                   
+Lex                  Americas                                                   
+Julia                Americas                                                   
+
+FIRST_NAME           REGION_NAME                                                
+-------------------- -------------------------                                  
+Jennifer             Americas                                                   
+Louise               Europe                                                     
+Bruce                Americas                                                   
+Alberto              Europe                                                     
+Britney              Americas                                                   
+Daniel               Americas                                                   
+Pat                  Americas                                                   
+Kevin                Americas                                                   
+Jean                 Americas                                                   
+Tayler               Europe                                                     
+Adam                 Americas                                                   
+
+FIRST_NAME           REGION_NAME                                                
+-------------------- -------------------------                                  
+Timothy              Americas                                                   
+Ki                   Americas                                                   
+Girard               Americas                                                   
+William              Americas                                                   
+Douglas              Americas                                                   
+Nancy                Americas                                                   
+Danielle             Europe                                                     
+Peter                Europe                                                     
+Michael              Americas                                                   
+Shelley              Americas                                                   
+Guy                  Americas                                                   
+
+FIRST_NAME           REGION_NAME                                                
+-------------------- -------------------------                                  
+Alexander            Americas                                                   
+Alyssa               Europe                                                     
+Charles              Europe                                                     
+Vance                Americas                                                   
+Payam                Americas                                                   
+Alexander            Americas                                                   
+Janette              Europe                                                     
+Steven               Americas                                                   
+Neena                Americas                                                   
+Sundita              Europe                                                     
+Renske               Americas                                                   
+
+FIRST_NAME           REGION_NAME                                                
+-------------------- -------------------------                                  
+James                Americas                                                   
+David                Europe                                                     
+Jack                 Europe                                                     
+Diana                Americas                                                   
+Jason                Americas                                                   
+Steven               Americas                                                   
+James                Americas                                                   
+Mattea               Europe                                                     
+Randall              Americas                                                   
+Susan                Europe                                                     
+Samuel               Americas                                                   
+
+FIRST_NAME           REGION_NAME                                                
+-------------------- -------------------------                                  
+Allan                Europe                                                     
+Irene                Americas                                                   
+Kevin                Americas                                                   
+Julia                Americas                                                   
+Donald               Americas                                                   
+Christopher          Europe                                                     
+TJ                   Americas                                                   
+Lisa                 Europe                                                     
+Karen                Europe                                                     
+Valli                Americas                                                   
+Joshua               Americas                                                   
+
+FIRST_NAME           REGION_NAME                                                
+-------------------- -------------------------                                  
+Randall              Americas                                                   
+Hazel                Americas                                                   
+Luis                 Americas                                                   
+Trenna               Americas                                                   
+Den                  Americas                                                   
+Michael              Americas                                                   
+John                 Europe                                                     
+Nandita              Americas                                                   
+Ismael               Americas                                                   
+John                 Americas                                                   
+Sarath               Europe                                                     
+
+FIRST_NAME           REGION_NAME                                                
+-------------------- -------------------------                                  
+Lindsey              Europe                                                     
+William              Europe                                                     
+Stephen              Americas                                                   
+Martha               Americas                                                   
+Patrick              Europe                                                     
+Jonathon             Europe                                                     
+Winston              Americas                                                   
+Sigal                Americas                                                   
+Peter                Europe                                                     
+Oliver               Europe                                                     
+Jose Manuel          Americas                                                   
+
+FIRST_NAME           REGION_NAME                                                
+-------------------- -------------------------                                  
+Peter                Americas                                                   
+Clara                Europe                                                     
+Shanta               Americas                                                   
+Alana                Americas                                                   
+Matthew              Americas                                                   
+Jennifer             Americas                                                   
+Eleni                Europe                                                     
+
+106 rows selected.
+
+SQL> select view_name,text from user_views where view_name='VIEW_COMPLEX';
+
+VIEW_NAME                                                                       
+--------------------------------------------------------------------------------
+TEXT                                                                            
+--------------------------------------------------------------------------------
+VIEW_COMPLEX                                                                    
+select first_name,region_name from employees join departments using (department_
+                                                                                
+
+SQL> set long 2000
+SQL> select view_name,text from user_views where view_name='VIEW_COMPLEX';
+
+VIEW_NAME                                                                       
+--------------------------------------------------------------------------------
+TEXT                                                                            
+--------------------------------------------------------------------------------
+VIEW_COMPLEX                                                                    
+select first_name,region_name from employees join departments using (department_
+id)                                                                             
+join locations using (location_id)                                              
+join countries using(country_id)                                                
+join regions using(region_id)                                                   
+                                                                                
+
+SQL> select view_name,text from user_views where view_name='view_complex';
+
+no rows selected
+
+SQL> select view_name,text from user_views where view_name='VIEW_HERO';
+
+VIEW_NAME                                                                       
+--------------------------------------------------------------------------------
+TEXT                                                                            
+--------------------------------------------------------------------------------
+VIEW_HERO                                                                       
+select no,name,sal from hero                                                    
+                                                                                
+
+SQL> rem type viewname in upper letter
+SQL> create view view_name as select max(salary),min(salary),sum(salary),count(salary) from employees order by department_id;
+create view view_name as select max(salary),min(salary),sum(salary),count(salary) from employees order by department_id
+                                *
+ERROR at line 1:
+ORA-00998: must name this expression with a column alias 
+
+
+SQL> create view view_name as select max(salary) msal,min(salary) minsal,sum(salary) sumsal,count(salary) countsal from employees order by department_id;
+
+View created.
+
+SQL> select * from view_name;
+
+      MSAL     MINSAL     SUMSAL   COUNTSAL                                     
+---------- ---------- ---------- ----------                                     
+     24000       2100     691416        107                                     
+
+SQL> create view view_name as select max(salary) msal,min(salary) minsal,sum(salary) sumsal,count(salary) countsal from employees where department_id=10;
+create view view_name as select max(salary) msal,min(salary) minsal,sum(salary) sumsal,count(salary) countsal from employees where department_id=10
+            *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> create view view_name1 as select max(salary) msal,min(salary) minsal,sum(salary) sumsal,count(salary) countsal from employees group by department_id;
+
+View created.
+
+SQL> select * from view_name1;
+
+      MSAL     MINSAL     SUMSAL   COUNTSAL                                     
+---------- ---------- ---------- ----------                                     
+     12008       6900      51608          6                                     
+     11000       2500      24900          6                                     
+      7000       7000       7000          1                                     
+     24000      17000      58000          3                                     
+     13000       6000      19000          2                                     
+     10000      10000      10000          1                                     
+     12008       8300      20308          2                                     
+      8200       2100     156400         45                                     
+     14000       6100     304500         34                                     
+      6500       6500       6500          1                                     
+      9000       4200      28800          5                                     
+
+      MSAL     MINSAL     SUMSAL   COUNTSAL                                     
+---------- ---------- ---------- ----------                                     
+      4400       4400       4400          1                                     
+
+12 rows selected.
+
+SQL> set lines200
+SQL> create view view_name1 as select max(salary) msal,min(salary) minsal,sum(salary) sumsal,count(salary) countsal from employees group by department_id;
+create view view_name1 as select max(salary) msal,min(salary) minsal,sum(salary) sumsal,count(salary) countsal from employees group by department_id
+            *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> select * from view_name1;
+
+      MSAL     MINSAL     SUMSAL   COUNTSAL                                                                                                                                                             
+---------- ---------- ---------- ----------                                                                                                                                                             
+     12008       6900      51608          6                                                                                                                                                             
+     11000       2500      24900          6                                                                                                                                                             
+      7000       7000       7000          1                                                                                                                                                             
+     24000      17000      58000          3                                                                                                                                                             
+     13000       6000      19000          2                                                                                                                                                             
+     10000      10000      10000          1                                                                                                                                                             
+     12008       8300      20308          2                                                                                                                                                             
+      8200       2100     156400         45                                                                                                                                                             
+     14000       6100     304500         34                                                                                                                                                             
+      6500       6500       6500          1                                                                                                                                                             
+      9000       4200      28800          5                                                                                                                                                             
+
+      MSAL     MINSAL     SUMSAL   COUNTSAL                                                                                                                                                             
+---------- ---------- ---------- ----------                                                                                                                                                             
+      4400       4400       4400          1                                                                                                                                                             
+
+12 rows selected.
+
+SQL> create view view_name11 as select first_name, salary,salary*6,salaey*12  from employees;
+create view view_name11 as select first_name, salary,salary*6,salaey*12  from employees
+                                                              *
+ERROR at line 1:
+ORA-00904: "SALAEY": invalid identifier 
+
+
+SQL> create view view_name11 as select first_name, salary,salary*6,salary*12  from employees;
+create view view_name11 as select first_name, salary,salary*6,salary*12  from employees
+                                                           *
+ERROR at line 1:
+ORA-00998: must name this expression with a column alias 
+
+
+SQL> create view view_name11 as select first_name, salary,salary*6 sal6mon, salary*12  sal12mon from employees;
+
+View created.
+
+SQL> select * from view_name11 order by department_id;
+select * from view_name11 order by department_id
+                                   *
+ERROR at line 1:
+ORA-00904: "DEPARTMENT_ID": invalid identifier 
+
+
+SQL> select * from view_name11;
+
+FIRST_NAME               SALARY    SAL6MON   SAL12MON                                                                                                                                                   
+-------------------- ---------- ---------- ----------                                                                                                                                                   
+Steven                    24000     144000     288000                                                                                                                                                   
+Neena                     17000     102000     204000                                                                                                                                                   
+Lex                       17000     102000     204000                                                                                                                                                   
+Alexander                  9000      54000     108000                                                                                                                                                   
+Bruce                      6000      36000      72000                                                                                                                                                   
+David                      4800      28800      57600                                                                                                                                                   
+Valli                      4800      28800      57600                                                                                                                                                   
+Diana                      4200      25200      50400                                                                                                                                                   
+Nancy                     12008      72048     144096                                                                                                                                                   
+Daniel                     9000      54000     108000                                                                                                                                                   
+John                       8200      49200      98400                                                                                                                                                   
+
+FIRST_NAME               SALARY    SAL6MON   SAL12MON                                                                                                                                                   
+-------------------- ---------- ---------- ----------                                                                                                                                                   
+Ismael                     7700      46200      92400                                                                                                                                                   
+Jose Manuel                7800      46800      93600                                                                                                                                                   
+Luis                       6900      41400      82800                                                                                                                                                   
+Den                       11000      66000     132000                                                                                                                                                   
+Alexander                  3100      18600      37200                                                                                                                                                   
+Shelli                     2900      17400      34800                                                                                                                                                   
+Sigal                      2800      16800      33600                                                                                                                                                   
+Guy                        2600      15600      31200                                                                                                                                                   
+Karen                      2500      15000      30000                                                                                                                                                   
+Matthew                    8000      48000      96000                                                                                                                                                   
+Adam                       8200      49200      98400                                                                                                                                                   
+
+FIRST_NAME               SALARY    SAL6MON   SAL12MON                                                                                                                                                   
+-------------------- ---------- ---------- ----------                                                                                                                                                   
+Payam                      7900      47400      94800                                                                                                                                                   
+Shanta                     6500      39000      78000                                                                                                                                                   
+Kevin                      5800      34800      69600                                                                                                                                                   
+Julia                      3200      19200      38400                                                                                                                                                   
+Irene                      2700      16200      32400                                                                                                                                                   
+James                      2400      14400      28800                                                                                                                                                   
+Steven                     2200      13200      26400                                                                                                                                                   
+Laura                      3300      19800      39600                                                                                                                                                   
+Mozhe                      2800      16800      33600                                                                                                                                                   
+James                      2500      15000      30000                                                                                                                                                   
+TJ                         2100      12600      25200                                                                                                                                                   
+
+FIRST_NAME               SALARY    SAL6MON   SAL12MON                                                                                                                                                   
+-------------------- ---------- ---------- ----------                                                                                                                                                   
+Jason                      3300      19800      39600                                                                                                                                                   
+Michael                    2900      17400      34800                                                                                                                                                   
+Ki                         2400      14400      28800                                                                                                                                                   
+Hazel                      2200      13200      26400                                                                                                                                                   
+Renske                     3600      21600      43200                                                                                                                                                   
+Stephen                    3200      19200      38400                                                                                                                                                   
+John                       2700      16200      32400                                                                                                                                                   
+Joshua                     2500      15000      30000                                                                                                                                                   
+Trenna                     3500      21000      42000                                                                                                                                                   
+Curtis                     3100      18600      37200                                                                                                                                                   
+Randall                    2600      15600      31200                                                                                                                                                   
+
+FIRST_NAME               SALARY    SAL6MON   SAL12MON                                                                                                                                                   
+-------------------- ---------- ---------- ----------                                                                                                                                                   
+Peter                      2500      15000      30000                                                                                                                                                   
+John                      14000      84000     168000                                                                                                                                                   
+Karen                     13500      81000     162000                                                                                                                                                   
+Alberto                   12000      72000     144000                                                                                                                                                   
+Gerald                    11000      66000     132000                                                                                                                                                   
+Eleni                     10500      63000     126000                                                                                                                                                   
+Peter                     10000      60000     120000                                                                                                                                                   
+David                      9500      57000     114000                                                                                                                                                   
+Peter                      9000      54000     108000                                                                                                                                                   
+Christopher                8000      48000      96000                                                                                                                                                   
+Nanette                    7500      45000      90000                                                                                                                                                   
+
+FIRST_NAME               SALARY    SAL6MON   SAL12MON                                                                                                                                                   
+-------------------- ---------- ---------- ----------                                                                                                                                                   
+Oliver                     7000      42000      84000                                                                                                                                                   
+Janette                   10000      60000     120000                                                                                                                                                   
+Patrick                    9500      57000     114000                                                                                                                                                   
+Allan                      9000      54000     108000                                                                                                                                                   
+Lindsey                    8000      48000      96000                                                                                                                                                   
+Louise                     7500      45000      90000                                                                                                                                                   
+Sarath                     7000      42000      84000                                                                                                                                                   
+Clara                     10500      63000     126000                                                                                                                                                   
+Danielle                   9500      57000     114000                                                                                                                                                   
+Mattea                     7200      43200      86400                                                                                                                                                   
+David                      6800      40800      81600                                                                                                                                                   
+
+FIRST_NAME               SALARY    SAL6MON   SAL12MON                                                                                                                                                   
+-------------------- ---------- ---------- ----------                                                                                                                                                   
+Sundar                     6400      38400      76800                                                                                                                                                   
+Amit                       6200      37200      74400                                                                                                                                                   
+Lisa                      11500      69000     138000                                                                                                                                                   
+Harrison                  10000      60000     120000                                                                                                                                                   
+Tayler                     9600      57600     115200                                                                                                                                                   
+William                    7400      44400      88800                                                                                                                                                   
+Elizabeth                  7300      43800      87600                                                                                                                                                   
+Sundita                    6100      36600      73200                                                                                                                                                   
+Ellen                     11000      66000     132000                                                                                                                                                   
+Alyssa                     8800      52800     105600                                                                                                                                                   
+Jonathon                   8600      51600     103200                                                                                                                                                   
+
+FIRST_NAME               SALARY    SAL6MON   SAL12MON                                                                                                                                                   
+-------------------- ---------- ---------- ----------                                                                                                                                                   
+Jack                       8400      50400     100800                                                                                                                                                   
+Kimberely                  7000      42000      84000                                                                                                                                                   
+Charles                    6200      37200      74400                                                                                                                                                   
+Winston                    3200      19200      38400                                                                                                                                                   
+Jean                       3100      18600      37200                                                                                                                                                   
+Martha                     2500      15000      30000                                                                                                                                                   
+Girard                     2800      16800      33600                                                                                                                                                   
+Nandita                    4200      25200      50400                                                                                                                                                   
+Alexis                     4100      24600      49200                                                                                                                                                   
+Julia                      3400      20400      40800                                                                                                                                                   
+Anthony                    3000      18000      36000                                                                                                                                                   
+
+FIRST_NAME               SALARY    SAL6MON   SAL12MON                                                                                                                                                   
+-------------------- ---------- ---------- ----------                                                                                                                                                   
+Kelly                      3800      22800      45600                                                                                                                                                   
+Jennifer                   3600      21600      43200                                                                                                                                                   
+Timothy                    2900      17400      34800                                                                                                                                                   
+Randall                    2500      15000      30000                                                                                                                                                   
+Sarah                      4000      24000      48000                                                                                                                                                   
+Britney                    3900      23400      46800                                                                                                                                                   
+Samuel                     3200      19200      38400                                                                                                                                                   
+Vance                      2800      16800      33600                                                                                                                                                   
+Alana                      3100      18600      37200                                                                                                                                                   
+Kevin                      3000      18000      36000                                                                                                                                                   
+Donald                     2600      15600      31200                                                                                                                                                   
+
+FIRST_NAME               SALARY    SAL6MON   SAL12MON                                                                                                                                                   
+-------------------- ---------- ---------- ----------                                                                                                                                                   
+Douglas                    2600      15600      31200                                                                                                                                                   
+Jennifer                   4400      26400      52800                                                                                                                                                   
+Michael                   13000      78000     156000                                                                                                                                                   
+Pat                        6000      36000      72000                                                                                                                                                   
+Susan                      6500      39000      78000                                                                                                                                                   
+Hermann                   10000      60000     120000                                                                                                                                                   
+Shelley                   12008      72048     144096                                                                                                                                                   
+William                    8300      49800      99600                                                                                                                                                   
+
+107 rows selected.
+
+SQL> set pages250
+SQL> select * from view_name11;
+
+FIRST_NAME               SALARY    SAL6MON   SAL12MON                                                                                                                                                   
+-------------------- ---------- ---------- ----------                                                                                                                                                   
+Steven                    24000     144000     288000                                                                                                                                                   
+Neena                     17000     102000     204000                                                                                                                                                   
+Lex                       17000     102000     204000                                                                                                                                                   
+Alexander                  9000      54000     108000                                                                                                                                                   
+Bruce                      6000      36000      72000                                                                                                                                                   
+David                      4800      28800      57600                                                                                                                                                   
+Valli                      4800      28800      57600                                                                                                                                                   
+Diana                      4200      25200      50400                                                                                                                                                   
+Nancy                     12008      72048     144096                                                                                                                                                   
+Daniel                     9000      54000     108000                                                                                                                                                   
+John                       8200      49200      98400                                                                                                                                                   
+Ismael                     7700      46200      92400                                                                                                                                                   
+Jose Manuel                7800      46800      93600                                                                                                                                                   
+Luis                       6900      41400      82800                                                                                                                                                   
+Den                       11000      66000     132000                                                                                                                                                   
+Alexander                  3100      18600      37200                                                                                                                                                   
+Shelli                     2900      17400      34800                                                                                                                                                   
+Sigal                      2800      16800      33600                                                                                                                                                   
+Guy                        2600      15600      31200                                                                                                                                                   
+Karen                      2500      15000      30000                                                                                                                                                   
+Matthew                    8000      48000      96000                                                                                                                                                   
+Adam                       8200      49200      98400                                                                                                                                                   
+Payam                      7900      47400      94800                                                                                                                                                   
+Shanta                     6500      39000      78000                                                                                                                                                   
+Kevin                      5800      34800      69600                                                                                                                                                   
+Julia                      3200      19200      38400                                                                                                                                                   
+Irene                      2700      16200      32400                                                                                                                                                   
+James                      2400      14400      28800                                                                                                                                                   
+Steven                     2200      13200      26400                                                                                                                                                   
+Laura                      3300      19800      39600                                                                                                                                                   
+Mozhe                      2800      16800      33600                                                                                                                                                   
+James                      2500      15000      30000                                                                                                                                                   
+TJ                         2100      12600      25200                                                                                                                                                   
+Jason                      3300      19800      39600                                                                                                                                                   
+Michael                    2900      17400      34800                                                                                                                                                   
+Ki                         2400      14400      28800                                                                                                                                                   
+Hazel                      2200      13200      26400                                                                                                                                                   
+Renske                     3600      21600      43200                                                                                                                                                   
+Stephen                    3200      19200      38400                                                                                                                                                   
+John                       2700      16200      32400                                                                                                                                                   
+Joshua                     2500      15000      30000                                                                                                                                                   
+Trenna                     3500      21000      42000                                                                                                                                                   
+Curtis                     3100      18600      37200                                                                                                                                                   
+Randall                    2600      15600      31200                                                                                                                                                   
+Peter                      2500      15000      30000                                                                                                                                                   
+John                      14000      84000     168000                                                                                                                                                   
+Karen                     13500      81000     162000                                                                                                                                                   
+Alberto                   12000      72000     144000                                                                                                                                                   
+Gerald                    11000      66000     132000                                                                                                                                                   
+Eleni                     10500      63000     126000                                                                                                                                                   
+Peter                     10000      60000     120000                                                                                                                                                   
+David                      9500      57000     114000                                                                                                                                                   
+Peter                      9000      54000     108000                                                                                                                                                   
+Christopher                8000      48000      96000                                                                                                                                                   
+Nanette                    7500      45000      90000                                                                                                                                                   
+Oliver                     7000      42000      84000                                                                                                                                                   
+Janette                   10000      60000     120000                                                                                                                                                   
+Patrick                    9500      57000     114000                                                                                                                                                   
+Allan                      9000      54000     108000                                                                                                                                                   
+Lindsey                    8000      48000      96000                                                                                                                                                   
+Louise                     7500      45000      90000                                                                                                                                                   
+Sarath                     7000      42000      84000                                                                                                                                                   
+Clara                     10500      63000     126000                                                                                                                                                   
+Danielle                   9500      57000     114000                                                                                                                                                   
+Mattea                     7200      43200      86400                                                                                                                                                   
+David                      6800      40800      81600                                                                                                                                                   
+Sundar                     6400      38400      76800                                                                                                                                                   
+Amit                       6200      37200      74400                                                                                                                                                   
+Lisa                      11500      69000     138000                                                                                                                                                   
+Harrison                  10000      60000     120000                                                                                                                                                   
+Tayler                     9600      57600     115200                                                                                                                                                   
+William                    7400      44400      88800                                                                                                                                                   
+Elizabeth                  7300      43800      87600                                                                                                                                                   
+Sundita                    6100      36600      73200                                                                                                                                                   
+Ellen                     11000      66000     132000                                                                                                                                                   
+Alyssa                     8800      52800     105600                                                                                                                                                   
+Jonathon                   8600      51600     103200                                                                                                                                                   
+Jack                       8400      50400     100800                                                                                                                                                   
+Kimberely                  7000      42000      84000                                                                                                                                                   
+Charles                    6200      37200      74400                                                                                                                                                   
+Winston                    3200      19200      38400                                                                                                                                                   
+Jean                       3100      18600      37200                                                                                                                                                   
+Martha                     2500      15000      30000                                                                                                                                                   
+Girard                     2800      16800      33600                                                                                                                                                   
+Nandita                    4200      25200      50400                                                                                                                                                   
+Alexis                     4100      24600      49200                                                                                                                                                   
+Julia                      3400      20400      40800                                                                                                                                                   
+Anthony                    3000      18000      36000                                                                                                                                                   
+Kelly                      3800      22800      45600                                                                                                                                                   
+Jennifer                   3600      21600      43200                                                                                                                                                   
+Timothy                    2900      17400      34800                                                                                                                                                   
+Randall                    2500      15000      30000                                                                                                                                                   
+Sarah                      4000      24000      48000                                                                                                                                                   
+Britney                    3900      23400      46800                                                                                                                                                   
+Samuel                     3200      19200      38400                                                                                                                                                   
+Vance                      2800      16800      33600                                                                                                                                                   
+Alana                      3100      18600      37200                                                                                                                                                   
+Kevin                      3000      18000      36000                                                                                                                                                   
+Donald                     2600      15600      31200                                                                                                                                                   
+Douglas                    2600      15600      31200                                                                                                                                                   
+Jennifer                   4400      26400      52800                                                                                                                                                   
+Michael                   13000      78000     156000                                                                                                                                                   
+Pat                        6000      36000      72000                                                                                                                                                   
+Susan                      6500      39000      78000                                                                                                                                                   
+Hermann                   10000      60000     120000                                                                                                                                                   
+Shelley                   12008      72048     144096                                                                                                                                                   
+William                    8300      49800      99600                                                                                                                                                   
+
+107 rows selected.
+
+SQL> create view view_nam as select job_id,first_name from employees where group by job_id;
+create view view_nam as select job_id,first_name from employees where group by job_id
+                                                                      *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> create view view_nam as select job_id,first_name from employees  group by job_id;
+create view view_nam as select job_id,first_name from employees  group by job_id
+                                      *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> create view view_nam as select job_id,first_name fname from employees  group by job_id;
+create view view_nam as select job_id,first_name fname from employees  group by job_id
+                                      *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> create view view_nam as select job_id,count(job_id)  from employees  group by job_id;
+create view view_nam as select job_id,count(job_id)  from employees  group by job_id
+                                      *
+ERROR at line 1:
+ORA-00998: must name this expression with a column alias 
+
+
+SQL> create view view_nam as select job_id,count(job_id) cn  from employees  group by job_id;
+
+View created.
+
+SQL> select * from view_nam;
+
+JOB_ID             CN                                                                                                                                                                                   
+---------- ----------                                                                                                                                                                                   
+AC_ACCOUNT          1                                                                                                                                                                                   
+AC_MGR              1                                                                                                                                                                                   
+AD_ASST             1                                                                                                                                                                                   
+AD_PRES             1                                                                                                                                                                                   
+AD_VP               2                                                                                                                                                                                   
+FI_ACCOUNT          5                                                                                                                                                                                   
+FI_MGR              1                                                                                                                                                                                   
+HR_REP              1                                                                                                                                                                                   
+IT_PROG             5                                                                                                                                                                                   
+MK_MAN              1                                                                                                                                                                                   
+MK_REP              1                                                                                                                                                                                   
+PR_REP              1                                                                                                                                                                                   
+PU_CLERK            5                                                                                                                                                                                   
+PU_MAN              1                                                                                                                                                                                   
+SA_MAN              5                                                                                                                                                                                   
+SA_REP             30                                                                                                                                                                                   
+SH_CLERK           20                                                                                                                                                                                   
+ST_CLERK           20                                                                                                                                                                                   
+ST_MAN              5                                                                                                                                                                                   
+
+19 rows selected.
+
+SQL> create view view_nam as select first_name,job_id,count(job_id) cn  from employees  group by job_id;
+create view view_nam as select first_name,job_id,count(job_id) cn  from employees  group by job_id
+                               *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> create view view_nam as select dropjob_id,count(job_id) cn  from employees  group by job_id;
+create view view_nam as select dropjob_id,count(job_id) cn  from employees  group by job_id
+                               *
+ERROR at line 1:
+ORA-00904: "DROPJOB_ID": invalid identifier 
+
+
+SQL> drop view view_name11;
+
+View dropped.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> view view_hire as select first_name,hire_date from employees where substr(hire_date,4,3)='JAN';
+SP2-0734: unknown command beginning "view view_..." - rest of line ignored.
+SQL> create view view_hire as select first_name,hire_date from employees where substr(hire_date,4,3)='JAN';
+
+View created.
+
+SQL> select * from view_hire;
+
+FIRST_NAME           HIRE_DATE                                                                                                                                                                          
+-------------------- ---------                                                                                                                                                                          
+Lex                  13-JAN-01                                                                                                                                                                          
+Alexander            03-JAN-06                                                                                                                                                                          
+James                14-JAN-07                                                                                                                                                                          
+Curtis               29-JAN-05                                                                                                                                                                          
+Karen                05-JAN-05                                                                                                                                                                          
+Eleni                29-JAN-08                                                                                                                                                                          
+Peter                30-JAN-05                                                                                                                                                                          
+Janette              30-JAN-04                                                                                                                                                                          
+Mattea               24-JAN-08                                                                                                                                                                          
+Tayler               24-JAN-06                                                                                                                                                                          
+Charles              04-JAN-08                                                                                                                                                                          
+Winston              24-JAN-06                                                                                                                                                                          
+Nandita              27-JAN-04                                                                                                                                                                          
+Douglas              13-JAN-08                                                                                                                                                                          
+
+14 rows selected.
+
+SQL> create view view_hire as select first_name,hire_date from employees where substr(hire_date,4,3)='FEB';
+create view view_hire as select first_name,hire_date from employees where substr(hire_date,4,3)='FEB'
+            *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> create view view_hire1 as select first_name,hire_date from employees where substr(hire_date,4,3)='FEB';
+
+View created.
+
+SQL> select * from view_hire1;
+
+FIRST_NAME           HIRE_DATE                                                                                                                                                                          
+-------------------- ---------                                                                                                                                                                          
+Valli                05-FEB-06                                                                                                                                                                          
+Diana                07-FEB-07                                                                                                                                                                          
+James                16-FEB-05                                                                                                                                                                          
+Hazel                06-FEB-08                                                                                                                                                                          
+John                 12-FEB-06                                                                                                                                                                          
+David                23-FEB-08                                                                                                                                                                          
+William              23-FEB-07                                                                                                                                                                          
+Jean                 23-FEB-06                                                                                                                                                                          
+Girard               03-FEB-08                                                                                                                                                                          
+Alexis               20-FEB-05                                                                                                                                                                          
+Anthony              07-FEB-07                                                                                                                                                                          
+Sarah                04-FEB-04                                                                                                                                                                          
+Michael              17-FEB-04                                                                                                                                                                          
+
+13 rows selected.
+
+SQL> create view view_hire1 as select first_name,hire_date FEB_HIRE from employees where substr(hire_date,4,3)='FEB';
+create view view_hire1 as select first_name,hire_date FEB_HIRE from employees where substr(hire_date,4,3)='FEB'
+            *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> replace view view_hire1 as select first_name,hire_date FEB_HIRE from employees where substr(hire_date,4,3)='FEB';
+SP2-0734: unknown command beginning "replace vi..." - rest of line ignored.
+SQL> create or replace view view_hire1 as select first_name,hire_date FEB_HIRE from employees where substr(hire_date,4,3)='FEB';
+
+View created.
+
+SQL> select * from view_hire1;
+
+FIRST_NAME           FEB_HIRE                                                                                                                                                                           
+-------------------- ---------                                                                                                                                                                          
+Valli                05-FEB-06                                                                                                                                                                          
+Diana                07-FEB-07                                                                                                                                                                          
+James                16-FEB-05                                                                                                                                                                          
+Hazel                06-FEB-08                                                                                                                                                                          
+John                 12-FEB-06                                                                                                                                                                          
+David                23-FEB-08                                                                                                                                                                          
+William              23-FEB-07                                                                                                                                                                          
+Jean                 23-FEB-06                                                                                                                                                                          
+Girard               03-FEB-08                                                                                                                                                                          
+Alexis               20-FEB-05                                                                                                                                                                          
+Anthony              07-FEB-07                                                                                                                                                                          
+Sarah                04-FEB-04                                                                                                                                                                          
+Michael              17-FEB-04                                                                                                                                                                          
+
+13 rows selected.
+
+SQL> create view view_hire as select first_name,hire_date from employees where substr(hire_date,4,3)='FEB';
+create view view_hire as select first_name,hire_date from employees where substr(hire_date,4,3)='FEB'
+            *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> spool off

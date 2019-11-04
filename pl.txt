@@ -1,0 +1,12 @@
+set serveroutput on;
+create or replace procedure findMax(a in number,b in number)
+as9
+
+begin
+if a>b then 
+dbms_output.put_line(a||'is max');
+else
+dbms_output.put_line(b||'is max');
+end if;
+end;
+/

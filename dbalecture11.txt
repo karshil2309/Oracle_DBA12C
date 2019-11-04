@@ -1,0 +1,682 @@
+SQL> rem alter table table_name rename to t;
+SQL> select table_name from table_users;
+select table_name from table_users
+                       *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> select table_name from user_tables;
+
+TABLE_NAME                                                                      
+--------------------------------------------------------------------------------
+REGIONS                                                                         
+COUNTRIES                                                                       
+LOCATIONS                                                                       
+DEPARTMENTS                                                                     
+JOBS                                                                            
+EMPLOYEES                                                                       
+JOB_HISTORY                                                                     
+HERO                                                                            
+TIGER                                                                           
+TIGER1                                                                          
+
+10 rows selected.
+
+SQL> rem index
+SQL> rem select first_name,salart from e where salary>1000 create index on column and if not create index it will scan all the rows
+SQL> rem index is page number in general
+SQL> rem set autotrace on
+SQL> rem drop index index_name
+SQL> rem index is used to fast the search
+SQL> rem create index ind_nam on tabl_name(sala);
+SQL> select * from tab;
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID                                                              
+------- ----------                                                              
+BIN$YKi/D0jxTve7vyCOKEFjJw==$0                                                  
+TABLE                                                                           
+                                                                                
+CO                                                                              
+SYNONYM                                                                         
+                                                                                
+COUNTRIES                                                                       
+TABLE                                                                           
+                                                                                
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID                                                              
+------- ----------                                                              
+DE                                                                              
+SYNONYM                                                                         
+                                                                                
+DEP100                                                                          
+VIEW                                                                            
+                                                                                
+DEP110                                                                          
+VIEW                                                                            
+                                                                                
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID                                                              
+------- ----------                                                              
+DEP20                                                                           
+VIEW                                                                            
+                                                                                
+DEP30                                                                           
+VIEW                                                                            
+                                                                                
+DEP40                                                                           
+VIEW                                                                            
+                                                                                
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID                                                              
+------- ----------                                                              
+DEP50                                                                           
+VIEW                                                                            
+                                                                                
+DEP60                                                                           
+VIEW                                                                            
+                                                                                
+DEP70                                                                           
+VIEW                                                                            
+                                                                                
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID                                                              
+------- ----------                                                              
+DEP80                                                                           
+VIEW                                                                            
+                                                                                
+DEP90                                                                           
+VIEW                                                                            
+                                                                                
+DEPARTMENTS                                                                     
+TABLE                                                                           
+                                                                                
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID                                                              
+------- ----------                                                              
+DEP_ID                                                                          
+VIEW                                                                            
+                                                                                
+EM                                                                              
+SYNONYM                                                                         
+                                                                                
+EMPLOYEES                                                                       
+TABLE                                                                           
+                                                                                
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID                                                              
+------- ----------                                                              
+EMP_DETAILS_VIEW                                                                
+VIEW                                                                            
+                                                                                
+EMP_VIEW                                                                        
+VIEW                                                                            
+                                                                                
+HERO                                                                            
+TABLE                                                                           
+                                                                                
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID                                                              
+------- ----------                                                              
+JOBS                                                                            
+TABLE                                                                           
+                                                                                
+JOB_HISTORY                                                                     
+TABLE                                                                           
+                                                                                
+LO                                                                              
+SYNONYM                                                                         
+                                                                                
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID                                                              
+------- ----------                                                              
+LOCATIONS                                                                       
+TABLE                                                                           
+                                                                                
+RE                                                                              
+SYNONYM                                                                         
+                                                                                
+REGIONS                                                                         
+TABLE                                                                           
+                                                                                
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID                                                              
+------- ----------                                                              
+TIGER                                                                           
+TABLE                                                                           
+                                                                                
+TIGER1                                                                          
+TABLE                                                                           
+                                                                                
+VC                                                                              
+SYNONYM                                                                         
+                                                                                
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID                                                              
+------- ----------                                                              
+VH                                                                              
+SYNONYM                                                                         
+                                                                                
+VIE                                                                             
+SYNONYM                                                                         
+                                                                                
+VIEW_COMPLEX                                                                    
+VIEW                                                                            
+                                                                                
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID                                                              
+------- ----------                                                              
+VIEW_HERO                                                                       
+VIEW                                                                            
+                                                                                
+VIEW_HIRE                                                                       
+VIEW                                                                            
+                                                                                
+VIEW_HIRE1                                                                      
+VIEW                                                                            
+                                                                                
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID                                                              
+------- ----------                                                              
+VIEW_NAM                                                                        
+VIEW                                                                            
+                                                                                
+VIEW_NAME                                                                       
+VIEW                                                                            
+                                                                                
+VIEW_NAME1                                                                      
+VIEW                                                                            
+                                                                                
+
+39 rows selected.
+
+SQL> select * from hero
+  2  ;
+
+        NO NAME                                            SAL HIREDATE         
+---------- ---------------------------------------- ---------- ---------        
+         5 karshil                                       32000 12-JAN-19        
+        10 karshil                                       32000 12-JAN-19        
+         6 karsh                                          3000 12-JAN-19        
+         7 karsh                                          3000 12-JAN-19        
+         8 karsh                                          3000 12-JAN-19        
+         9 karsh                                          3000 12-JAN-19        
+        11 karsh                                          3000 12-JAN-19        
+        12 karsh                                          3000 12-JAN-19        
+        13 karsh                                          3000 12-JAN-19        
+        14 karsh                                          3000 12-JAN-19        
+        24 sfrf                                          23334 01-JAN-04        
+
+        NO NAME                                            SAL HIREDATE         
+---------- ---------------------------------------- ---------- ---------        
+        34 sfrf                                          23334 01-JAN-04        
+        44 sfrf                                          23334 01-JAN-04        
+        54 sfrf                                          23334 01-JAN-04        
+
+14 rows selected.
+
+SQL> set autotrace on;
+SP2-0618: Cannot find the Session Identifier.  Check PLUSTRACE role is enabled
+SP2-0611: Error enabling STATISTICS report
+SQL> select * from hero;
+
+        NO NAME                                            SAL HIREDATE         
+---------- ---------------------------------------- ---------- ---------        
+         5 karshil                                       32000 12-JAN-19        
+        10 karshil                                       32000 12-JAN-19        
+         6 karsh                                          3000 12-JAN-19        
+         7 karsh                                          3000 12-JAN-19        
+         8 karsh                                          3000 12-JAN-19        
+         9 karsh                                          3000 12-JAN-19        
+        11 karsh                                          3000 12-JAN-19        
+        12 karsh                                          3000 12-JAN-19        
+        13 karsh                                          3000 12-JAN-19        
+        14 karsh                                          3000 12-JAN-19        
+        24 sfrf                                          23334 01-JAN-04        
+
+        NO NAME                                            SAL HIREDATE         
+---------- ---------------------------------------- ---------- ---------        
+        34 sfrf                                          23334 01-JAN-04        
+        44 sfrf                                          23334 01-JAN-04        
+        54 sfrf                                          23334 01-JAN-04        
+
+14 rows selected.
+
+
+Execution Plan
+----------------------------------------------------------                      
+Plan hash value: 357501335                                                      
+                                                                                
+--------------------------------------------------------------------------      
+| Id  | Operation         | Name | Rows  | Bytes | Cost (%CPU)| Time     |      
+--------------------------------------------------------------------------      
+|   0 | SELECT STATEMENT  |      |    14 |   294 |     3   (0)| 00:00:01 |      
+|   1 |  TABLE ACCESS FULL| HERO |    14 |   294 |     3   (0)| 00:00:01 |      
+--------------------------------------------------------------------------      
+
+SQL> create index index_hero on hero(sal);
+
+Index created.
+
+SQL> set autotrace on;
+SP2-0618: Cannot find the Session Identifier.  Check PLUSTRACE role is enabled
+SP2-0611: Error enabling STATISTICS report
+SQL> select * from hero;
+
+        NO NAME                                            SAL HIREDATE         
+---------- ---------------------------------------- ---------- ---------        
+         5 karshil                                       32000 12-JAN-19        
+        10 karshil                                       32000 12-JAN-19        
+         6 karsh                                          3000 12-JAN-19        
+         7 karsh                                          3000 12-JAN-19        
+         8 karsh                                          3000 12-JAN-19        
+         9 karsh                                          3000 12-JAN-19        
+        11 karsh                                          3000 12-JAN-19        
+        12 karsh                                          3000 12-JAN-19        
+        13 karsh                                          3000 12-JAN-19        
+        14 karsh                                          3000 12-JAN-19        
+        24 sfrf                                          23334 01-JAN-04        
+
+        NO NAME                                            SAL HIREDATE         
+---------- ---------------------------------------- ---------- ---------        
+        34 sfrf                                          23334 01-JAN-04        
+        44 sfrf                                          23334 01-JAN-04        
+        54 sfrf                                          23334 01-JAN-04        
+
+14 rows selected.
+
+
+Execution Plan
+----------------------------------------------------------                      
+Plan hash value: 357501335                                                      
+                                                                                
+--------------------------------------------------------------------------      
+| Id  | Operation         | Name | Rows  | Bytes | Cost (%CPU)| Time     |      
+--------------------------------------------------------------------------      
+|   0 | SELECT STATEMENT  |      |    14 |   294 |     3   (0)| 00:00:01 |      
+|   1 |  TABLE ACCESS FULL| HERO |    14 |   294 |     3   (0)| 00:00:01 |      
+--------------------------------------------------------------------------      
+
+SQL> select * from hero where sal<7000;
+
+        NO NAME                                            SAL HIREDATE         
+---------- ---------------------------------------- ---------- ---------        
+         6 karsh                                          3000 12-JAN-19        
+         7 karsh                                          3000 12-JAN-19        
+         8 karsh                                          3000 12-JAN-19        
+         9 karsh                                          3000 12-JAN-19        
+        11 karsh                                          3000 12-JAN-19        
+        12 karsh                                          3000 12-JAN-19        
+        13 karsh                                          3000 12-JAN-19        
+        14 karsh                                          3000 12-JAN-19        
+
+8 rows selected.
+
+
+Execution Plan
+----------------------------------------------------------                      
+Plan hash value: 1376489390                                                     
+                                                                                
+--------------------------------------------------------------------------------
+------------------                                                              
+                                                                                
+| Id  | Operation                           | Name       | Rows  | Bytes | Cost 
+(%CPU)| Time     |                                                              
+                                                                                
+--------------------------------------------------------------------------------
+------------------                                                              
+                                                                                
+|   0 | SELECT STATEMENT                    |            |     8 |   168 |     2
+   (0)| 00:00:01 |                                                              
+                                                                                
+|   1 |  TABLE ACCESS BY INDEX ROWID BATCHED| HERO       |     8 |   168 |     2
+   (0)| 00:00:01 |                                                              
+                                                                                
+|*  2 |   INDEX RANGE SCAN                  | INDEX_HERO |     8 |       |     1
+   (0)| 00:00:01 |                                                              
+                                                                                
+--------------------------------------------------------------------------------
+------------------                                                              
+                                                                                
+                                                                                
+Predicate Information (identified by operation id):                             
+---------------------------------------------------                             
+                                                                                
+   2 - access("SAL"<7000)                                                       
+
+SQL> drop index index_hero;
+
+Index dropped.
+
+SQL> select * from hero where sal<7000;
+
+        NO NAME                                            SAL HIREDATE         
+---------- ---------------------------------------- ---------- ---------        
+         6 karsh                                          3000 12-JAN-19        
+         7 karsh                                          3000 12-JAN-19        
+         8 karsh                                          3000 12-JAN-19        
+         9 karsh                                          3000 12-JAN-19        
+        11 karsh                                          3000 12-JAN-19        
+        12 karsh                                          3000 12-JAN-19        
+        13 karsh                                          3000 12-JAN-19        
+        14 karsh                                          3000 12-JAN-19        
+
+8 rows selected.
+
+
+Execution Plan
+----------------------------------------------------------                      
+Plan hash value: 357501335                                                      
+                                                                                
+--------------------------------------------------------------------------      
+| Id  | Operation         | Name | Rows  | Bytes | Cost (%CPU)| Time     |      
+--------------------------------------------------------------------------      
+|   0 | SELECT STATEMENT  |      |     8 |   168 |     3   (0)| 00:00:01 |      
+|*  1 |  TABLE ACCESS FULL| HERO |     8 |   168 |     3   (0)| 00:00:01 |      
+--------------------------------------------------------------------------      
+                                                                                
+Predicate Information (identified by operation id):                             
+---------------------------------------------------                             
+                                                                                
+   1 - filter("SAL"<7000)                                                       
+
+SQL> create index index_he on hero(sal);
+
+Index created.
+
+SQL> select * from hero where sal<3000;
+
+no rows selected
+
+
+Execution Plan
+----------------------------------------------------------                      
+Plan hash value: 2970844232                                                     
+                                                                                
+--------------------------------------------------------------------------------
+----------------                                                                
+                                                                                
+| Id  | Operation                           | Name     | Rows  | Bytes | Cost (%
+CPU)| Time     |                                                                
+                                                                                
+--------------------------------------------------------------------------------
+----------------                                                                
+                                                                                
+|   0 | SELECT STATEMENT                    |          |     1 |    21 |     2  
+ (0)| 00:00:01 |                                                                
+                                                                                
+|   1 |  TABLE ACCESS BY INDEX ROWID BATCHED| HERO     |     1 |    21 |     2  
+ (0)| 00:00:01 |                                                                
+                                                                                
+|*  2 |   INDEX RANGE SCAN                  | INDEX_HE |     1 |       |     1  
+ (0)| 00:00:01 |                                                                
+                                                                                
+--------------------------------------------------------------------------------
+----------------                                                                
+                                                                                
+                                                                                
+Predicate Information (identified by operation id):                             
+---------------------------------------------------                             
+                                                                                
+   2 - access("SAL"<3000)                                                       
+
+SQL> rem set autotrace offl
+SQL> set autotrace off
+SQL> rem user crreaion
+SQL> rem for create datbase
+SQL> show user
+USER is "HR"
+SQL> rem step1 conn sys as sysdba
+SQL> rem create user india identify by india
+SQL> rem for permission grant to userdba is grant create session to india;
+SQL> sys as sysdba
+SP2-0734: unknown command beginning "sys as sys..." - rest of line ignored.
+SQL> conn sys as sysdba
+Connected.
+SQL> show user
+USER is "SYS"
+SQL> create user Karshil identify by 2309;
+create user Karshil identify by 2309
+                    *
+ERROR at line 1:
+ORA-00922: missing or invalid option 
+
+
+SQL> create user Karshil identified by 2309;
+
+User created.
+
+SQL> conn Karshil/2309;
+ERROR:
+ORA-01045: user KARSHIL lacks CREATE SESSION privilege; logon denied 
+
+
+Warning: You are no longer connected to ORACLE.
+SQL> show user
+USER is ""
+SQL> grant create session to Karshil;
+SP2-0640: Not connected
+SQL> conn sys as sysdba;
+Connected.
+SQL> show user
+USER is "SYS"
+SQL> grant create session to Karshil;
+
+Grant succeeded.
+
+SQL> conn Karshil/2309
+Connected.
+SQL> show user
+USER is "KARSHIL"
+SQL> create table t(no number(2));
+create table t(no number(2))
+*
+ERROR at line 1:
+ORA-01031: insufficient privileges 
+
+
+SQL> conn sys as sysdba
+Connected.
+SQL> grant create table,create synonyms,create view to Karshil;
+grant create table,create synonyms,create view to Karshil
+                   *
+ERROR at line 1:
+ORA-00990: missing or invalid privilege 
+
+
+SQL> grant create table,create view to Karshil;
+
+Grant succeeded.
+
+SQL> conn Karshil/2309;
+Connected.
+SQL> create table tbl_k(no number(2),name varchar2(20));
+
+Table created.
+
+SQL> select * from tab;
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID                                                              
+------- ----------                                                              
+TBL_K                                                                           
+TABLE                                                                           
+                                                                                
+
+SQL> set lines 200
+SQL> select * from tab;
+
+TNAME                                                                                                                            TABTYPE  CLUSTERID                                                     
+-------------------------------------------------------------------------------------------------------------------------------- ------- ----------                                                     
+TBL_K                                                                                                                            TABLE                                                                  
+
+SQL> rem for inserting the value in user created database give some storage space to the tale
+SQL> rem alter user
+SQL> rem alter user india identified by in defualt tablespace users temporary tablespace temp qutoa 20m on users
+SQL> alter user Karshil identified
+  2  by in default tablespace users
+  3  temporary tablespace temp
+  4  quota 30m on users
+  5  ;
+alter user Karshil identified
+*
+ERROR at line 1:
+ORA-01031: insufficient privileges 
+
+
+SQL> show user
+USER is "KARSHIL"
+SQL> conn sys as sysdba
+Connected.
+SQL> alter user Karshil identified by in
+  2  default tablespace users
+  3  temporary tablespace temp
+  4  quota 30m on users;
+
+User altered.
+
+SQL> conn Karshil/2309;
+ERROR:
+ORA-01017: invalid username/password; logon denied 
+
+
+Warning: You are no longer connected to ORACLE.
+SQL> conn Karshil/2309
+ERROR:
+ORA-01017: invalid username/password; logon denied 
+
+
+SQL> conn Karshil/2309
+ERROR:
+ORA-01017: invalid username/password; logon denied 
+
+
+SQL> conn Karshil/in
+Connected.
+SQL> insert into tbl_k values(1,'sdfb');
+
+1 row created.
+
+SQL> select * from tbl_k ;
+
+        NO NAME                                                                                                                                                                                         
+---------- --------------------                                                                                                                                                                         
+         1 sdfb                                                                                                                                                                                         
+
+SQL> rem after identified it is password
+SQL> show user
+USER is "KARSHIL"
+SQL> alter user Karshil identified by 2309;
+
+User altered.
+
+SQL> show user
+USER is "KARSHIL"
+SQL> rem password can be changed by the user anytime in any user connected
+SQL> rem revoke create table from India
+SQL> rem backups of 3 types full increment cummuluative
+SQL> rem drop user and to delete data inside table use cascade
+SQL> rem revoke is used to takeeawaay the persmmission
+SQL> rem use unlimited for quota on users;
+SQL> rem grant dba to user
+SQL> rem drop user india;
+SQL> rem to take away permission from user conn
+SQL> rem revoke create session from india;
+SQL> 
+SQL> show user
+USER is "KARSHIL"
+SQL> conn sys as sysdba
+Connected.
+SQL> revoke create table from Karshil;
+
+Revoke succeeded.
+
+SQL> conn Karshil/2309
+Connected.
+SQL> create table kdf(no number(02));
+create table kdf(no number(02))
+*
+ERROR at line 1:
+ORA-01031: insufficient privileges 
+
+
+SQL> conn sys as sysdba
+Connected.
+SQL> show user
+USER is "SYS"
+SQL> grant dba to Karshil
+  2  ;
+
+Grant succeeded.
+
+SQL> conn Karshil/2309
+Connected.
+SQL> insert into tbl_k values(2,'sdfv');
+
+1 row created.
+
+SQL> select * from tbl_k;
+
+        NO NAME                                                                                                                                                                                         
+---------- --------------------                                                                                                                                                                         
+         1 sdfb                                                                                                                                                                                         
+         2 sdfv                                                                                                                                                                                         
+
+SQL> rem the permission given to dba can only be revoked not more than that
+SQL> show user
+USER is "KARSHIL"
+SQL> conn sys as sysdba
+Connected.
+SQL> revoke dba from Karshil
+  2  ;
+
+Revoke succeeded.
+
+SQL> conn Karshil/2309
+Connected.
+SQL> insert into tbl_k values(2,'sdfv');
+
+1 row created.
+
+SQL> show user
+USER is "KARSHIL"
+SQL> conn sys as sysdba
+Connected.
+SQL> revoke create session from Karshil;
+
+Revoke succeeded.
+
+SQL> conn Karshil/2309
+ERROR:
+ORA-01045: user KARSHIL lacks CREATE SESSION privilege; logon denied 
+
+
+Warning: You are no longer connected to ORACLE.
+SQL> spool off

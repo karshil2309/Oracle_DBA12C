@@ -1,0 +1,438 @@
+SQL> create table hero(no number(4), name varchar2(25), sal number(8,2), default 1000);
+create table hero(no number(4), name varchar2(25), sal number(8,2), default 1000)
+                                                                    *
+ERROR at line 1:
+ORA-00904: : invalid identifier 
+
+
+SQL> create table hero(no number(4), name varchar2(25), sal number(8,2) default 1000);
+
+Table created.
+
+SQL> drop table hero;
+
+Table dropped.
+
+SQL> create table hero(no number(4), name varchar2(25), sal number(8,2) default 1000);
+
+Table created.
+
+SQL> select * from hero;
+
+no rows selected
+
+SQL> insert into hero values(1,'salman',2000);
+
+1 row created.
+
+SQL> insert into hero values(2,'salma',2560);
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select * from hero;
+
+        NO NAME                             SAL                                 
+---------- ------------------------- ----------                                 
+         1 salman                          2000                                 
+         2 salma                           2560                                 
+
+SQL> insert into hero values(2,'salma');
+insert into hero values(2,'salma')
+            *
+ERROR at line 1:
+ORA-00947: not enough values 
+
+
+SQL> insert into hero values(2,'salma',);
+insert into hero values(2,'salma',)
+                                  *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> insert into hero values(2,'salma',default);
+
+1 row created.
+
+SQL> delete from hero where sal='default';
+delete from hero where sal='default'
+                           *
+ERROR at line 1:
+ORA-01722: invalid number 
+
+
+SQL> delete from hero where sal=1000;
+
+1 row deleted.
+
+SQL> insert into hero (no,name) values(3,'kar');
+
+1 row created.
+
+SQL> select * from hero;
+
+        NO NAME                             SAL                                 
+---------- ------------------------- ----------                                 
+         1 salman                          2000                                 
+         2 salma                           2560                                 
+         3 kar                             1000                                 
+
+SQL> insert into hero(name,sal) values('sgd',243sw);
+insert into hero(name,sal) values('sgd',243sw)
+                                           *
+ERROR at line 1:
+ORA-00917: missing comma 
+
+
+SQL> insert into hero(name,sal) values('sgd',243);
+
+1 row created.
+
+SQL> select * from hero;
+
+        NO NAME                             SAL                                 
+---------- ------------------------- ----------                                 
+         1 salman                          2000                                 
+         2 salma                           2560                                 
+         3 kar                             1000                                 
+           sgd                              243                                 
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from hero;
+
+        NO NAME                             SAL                                 
+---------- ------------------------- ----------                                 
+         1 salman                          2000                                 
+         2 salma                           2560                                 
+
+SQL> def sumprimes(l):
+SP2-0136: DEFINE requires an equal sign (=)
+SQL>          sum = 0
+SP2-0042: unknown command "sum = 0" - rest of line ignored.
+SQL>          for i in l:
+SP2-0734: unknown command beginning "for i in l..." - rest of line ignored.
+SQL>              if i > 1:
+SP2-0042: unknown command "if i > 1:" - rest of line ignored.
+SQL>                  prime = True
+SP2-0734: unknown command beginning "prime = Tr..." - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL>                  for j in range(2,i):
+SP2-0734: unknown command beginning "for j in r..." - rest of line ignored.
+SQL>                      if (i%j == 0):
+SP2-0734: unknown command beginning "if (i%j ==..." - rest of line ignored.
+SQL>                         prime = False
+SP2-0734: unknown command beginning "prime = Fa..." - rest of line ignored.
+SQL>                  if prime:
+SP2-0042: unknown command "if prime:" - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL>                     sum = sum + i
+SP2-0734: unknown command beginning "sum = sum ..." - rest of line ignored.
+SQL> 
+SQL>          return(sum)def sumprimes(l):
+SP2-0734: unknown command beginning "return(sum..." - rest of line ignored.
+SQL>          sum = 0
+SP2-0042: unknown command "sum = 0" - rest of line ignored.
+SQL>          for i in l:
+SP2-0734: unknown command beginning "for i in l..." - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL>              if i > 1:
+SP2-0042: unknown command "if i > 1:" - rest of line ignored.
+SQL>                  prime = True
+SP2-0734: unknown command beginning "prime = Tr..." - rest of line ignored.
+SQL>                  for j in range(2,i):
+SP2-0734: unknown command beginning "for j in r..." - rest of line ignored.
+SQL>                      if (i%j == 0):
+SP2-0734: unknown command beginning "if (i%j ==..." - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL>                         prime = False
+SP2-0734: unknown command beginning "prime = Fa..." - rest of line ignored.
+SQL>                  if prime:
+SP2-0042: unknown command "if prime:" - rest of line ignored.
+SQL>                     sum = sum + i
+SP2-0734: unknown command beginning "sum = sum ..." - rest of line ignored.
+SQL> 
+SQL>          return(sum)
+SP2-0734: unknown command beginning "return(sum..." - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL> alter table hero add(hiredate, date default sysdate);
+alter table hero add(hiredate, date default sysdate)
+                               *
+ERROR at line 1:
+ORA-00904: : invalid identifier 
+
+
+SQL> alter table hero add(hiredate date default sysdate);
+
+Table altered.
+
+SQL> desc hero;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NO                                                 NUMBER(4)
+ NAME                                               VARCHAR2(25)
+ SAL                                                NUMBER(8,2)
+ HIREDATE                                           DATE
+
+SQL> select * from hero;
+
+        NO NAME                             SAL HIREDATE                        
+---------- ------------------------- ---------- ---------                       
+         1 salman                          2000 12-FEB-19                       
+         2 salma                           2560 12-FEB-19                       
+
+SQL> rem null will be print on gui adn not in cmd
+SQL> alter table hero add(HIRED date default sysdate);
+
+Table altered.
+
+SQL> desc
+Usage: DESCRIBE [schema.]object[@db_link]
+SQL> desc hero;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NO                                                 NUMBER(4)
+ NAME                                               VARCHAR2(25)
+ SAL                                                NUMBER(8,2)
+ HIREDATE                                           DATE
+ HIRED                                              DATE
+
+SQL> alter tavle hero modify(name varchar2(40));
+alter tavle hero modify(name varchar2(40))
+      *
+ERROR at line 1:
+ORA-00940: invalid ALTER command 
+
+
+SQL> alter table hero modify(name varchar2(40));
+
+Table altered.
+
+SQL> desc hero;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NO                                                 NUMBER(4)
+ NAME                                               VARCHAR2(40)
+ SAL                                                NUMBER(8,2)
+ HIREDATE                                           DATE
+ HIRED                                              DATE
+
+SQL> rem the modify table gets update adter it has been initialized and not before modify
+SQL> rem cannot decrease the size in modify
+SQL> alter table hero drop(HIRED);
+
+Table altered.
+
+SQL> alter table hero drop(HIRED);
+alter table hero drop(HIRED)
+                      *
+ERROR at line 1:
+ORA-00904: "HIRED": invalid identifier 
+
+
+SQL> desc hero
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NO                                                 NUMBER(4)
+ NAME                                               VARCHAR2(40)
+ SAL                                                NUMBER(8,2)
+ HIREDATE                                           DATE
+
+SQL> select * from hero
+  2  ;
+
+        NO NAME                                            SAL HIREDATE         
+---------- ---------------------------------------- ---------- ---------        
+         1 salman                                         2000 12-FEB-19        
+         2 salma                                          2560 12-FEB-19        
+
+SQL> alter table hero modify(no number(5) primary key);
+
+Table altered.
+
+SQL> desc hero
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NO                                        NOT NULL NUMBER(5)
+ NAME                                               VARCHAR2(40)
+ SAL                                                NUMBER(8,2)
+ HIREDATE                                           DATE
+
+SQL> rem col name for a15 to alter the size for small windows
+SQL> rem update table hero set name= 'ASLNF' where no=3;
+SQL> rem  update is session specific and when u commit it can be viewed both session
+SQL> rem  read consitency
+SQL> update table hero set name='Karshil where no=1;
+ERROR:
+ORA-01756: quoted string not properly terminated 
+
+
+SQL> update table hero set name='Karshil' where no=1;
+update table hero set name='Karshil' where no=1
+       *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> update table hero set name='Karshil' where no=1;
+update table hero set name='Karshil' where no=1
+       *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> update table hero set name='Karshil' where no=1;
+update table hero set name='Karshil' where no=1
+       *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> update hero set name='Karshil' where no=1;
+
+1 row updated.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select * from hero;
+
+        NO NAME                                            SAL HIREDATE         
+---------- ---------------------------------------- ---------- ---------        
+         1 Karshil                                        2000 12-FEB-19        
+         2 salma                                          2560 12-FEB-19        
+
+SQL> update hero set sal=3333 where no=2;
+
+1 row updated.
+
+SQL> 
+SQL> 
+SQL> select * from hero;
+
+        NO NAME                                            SAL HIREDATE         
+---------- ---------------------------------------- ---------- ---------        
+         1 Karshil                                        2000 12-FEB-19        
+         2 salma                                          3333 12-FEB-19        
+
+SQL> commit;
+
+Commit complete.
+
+SQL> rem lock is there when u try to update the salry from both session together;
+SQL> update hero set sal=33343sd where no=1;
+update hero set sal=33343sd where no=1
+                         *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> update hero set sal=33343 where no=1;
+
+1 row updated.
+
+SQL> select * from hero;
+
+        NO NAME                                            SAL HIREDATE         
+---------- ---------------------------------------- ---------- ---------        
+         1 Karshil                                       33343 12-FEB-19        
+         2 salma                                          3333 12-FEB-19        
+
+SQL> commit;
+
+Commit complete.
+
+SQL> update hero set sal=333 where no=1;
+
+1 row updated.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> update hero set name='sdfg' where no=1;
+
+1 row updated.
+
+SQL> update hero set name='srytuk' where no=2;
+update hero set name='srytuk' where no=2
+                *
+ERROR at line 1:
+ORA-00060: deadlock detected while waiting for resource 
+
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select * from hero;
+
+        NO NAME                                            SAL HIREDATE         
+---------- ---------------------------------------- ---------- ---------        
+         1 sdfg                                            333 12-FEB-19        
+         2 salma                                          3345 12-FEB-19        
+
+SQL> select * from hero;
+
+        NO NAME                                            SAL HIREDATE         
+---------- ---------------------------------------- ---------- ---------        
+         1 sdfg                                            333 12-FEB-19        
+         2 salma                                          3345 12-FEB-19        
+
+SQL> select * from hero;
+
+        NO NAME                                            SAL HIREDATE         
+---------- ---------------------------------------- ---------- ---------        
+         1 sdfgbfvgbn                                      333 12-FEB-19        
+         2 sdfgb                                          3345 12-FEB-19        
+
+SQL> commit;
+
+Commit complete.
+
+SQL> update hero set sal=333 where no=1;
+
+1 row updated.
+
+SQL> select * from hero;
+
+        NO NAME                                            SAL HIREDATE         
+---------- ---------------------------------------- ---------- ---------        
+         1 sdfgbfvgbn                                      333 12-FEB-19        
+         2 sdfgb                                          3345 12-FEB-19        
+
+SQL> update hero set sal=333 where no=1;
+
+1 row updated.
+
+SQL> update hero set sal=333 where no=2;
+update hero set sal=333 where no=2
+                *
+ERROR at line 1:
+ORA-00060: deadlock detected while waiting for resource 
+
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from hero;
+
+        NO NAME                                            SAL HIREDATE         
+---------- ---------------------------------------- ---------- ---------        
+         1 sdfgbfvgbn                                      333 12-FEB-19        
+         2 sdfgbfvgbn                                     3345 12-FEB-19        
+
+SQL> spool off

@@ -1,0 +1,203 @@
+
+SQL*Plus: Release 12.2.0.1.0 Production on Tue Feb 12 18:30:41 2019
+
+Copyright (c) 1982, 2016, Oracle.  All rights reserved.
+
+Enter user-name: sys as sysdba
+Enter password:
+
+Connected to:
+Oracle Database 12c Enterprise Edition Release 12.2.0.1.0 - 64bit Production
+
+SQL> conn hr/hr
+Connected.
+SQL> select * from hero;
+
+        NO NAME                                            SAL HIREDATE
+---------- ---------------------------------------- ---------- ---------
+         1 salman                                         2000 12-FEB-19
+         2 salma                                          2560 12-FEB-19
+
+SQL> select * from hero;
+
+        NO NAME                                            SAL HIREDATE
+---------- ---------------------------------------- ---------- ---------
+         1 Karshil                                        2000 12-FEB-19
+         2 salma                                          2560 12-FEB-19
+
+SQL> update hero set salary=2222 where no=2;
+update hero set salary=2222 where no=2
+                *
+ERROR at line 1:
+ORA-00904: "SALARY": invalid identifier
+
+
+SQL> update hero set sal=2222 where no=2;
+
+1 row updated.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select * from hero;
+
+        NO NAME                                            SAL HIREDATE
+---------- ---------------------------------------- ---------- ---------
+         1 Karshil                                        2000 12-FEB-19
+         2 salma                                          2222 12-FEB-19
+
+SQL> select * from hero;
+
+        NO NAME                                            SAL HIREDATE
+---------- ---------------------------------------- ---------- ---------
+         1 Karshil                                        2000 12-FEB-19
+         2 salma                                          3333 12-FEB-19
+
+SQL> select * from hero;
+
+        NO NAME                                            SAL HIREDATE
+---------- ---------------------------------------- ---------- ---------
+         1 Karshil                                        2000 12-FEB-19
+         2 salma                                          3333 12-FEB-19
+
+SQL> select * from hero;
+
+        NO NAME                                            SAL HIREDATE
+---------- ---------------------------------------- ---------- ---------
+         1 Karshil                                        2000 12-FEB-19
+         2 salma                                          3333 12-FEB-19
+
+SQL> update hero set sal=3325 where no=1;
+
+1 row updated.
+
+SQL> update hero set sal=3345 where no=2;
+
+1 row updated.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> update hero set name='sdfgb' where no=2;
+
+1 row updated.
+
+SQL> update hero set name='sdfgbfvgbn' where no=1;
+
+1 row updated.
+
+SQL> select * from hero;
+
+        NO NAME                                            SAL HIREDATE
+---------- ---------------------------------------- ---------- ---------
+         1 sdfgbfvgbn                                      333 12-FEB-19
+         2 sdfgb                                          3345 12-FEB-19
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select * from hero;
+
+        NO NAME                                            SAL HIREDATE
+---------- ---------------------------------------- ---------- ---------
+         1 sdfgbfvgbn                                      333 12-FEB-19
+         2 sdfgb                                          3345 12-FEB-19
+
+SQL> update hero set name='sdfgbfvgbn' where no=1;
+
+1 row updated.
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from hero;
+
+        NO NAME                                            SAL HIREDATE
+---------- ---------------------------------------- ---------- ---------
+         1 sdfgbfvgbn                                      333 12-FEB-19
+         2 sdfgb                                          3345 12-FEB-19
+
+SQL> update hero set name='sdfgbfvgbn' where no=2;
+
+1 row updated.
+
+SQL> update hero set name='sdfgbfvgbn' where no=1;
+
+1 row updated.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select * from tab;
+
+TNAME
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID
+------- ----------
+BIN$YKi/D0jxTve7vyCOKEFjJw==$0
+TABLE
+
+COUNTRIES
+TABLE
+
+DEPARTMENTS
+TABLE
+
+
+TNAME
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID
+------- ----------
+EMPLOYEES
+TABLE
+
+EMP_DETAILS_VIEW
+VIEW
+
+HERO
+TABLE
+
+
+TNAME
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID
+------- ----------
+JOBS
+TABLE
+
+JOB_HISTORY
+TABLE
+
+LOCATIONS
+TABLE
+
+
+TNAME
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID
+------- ----------
+REGIONS
+TABLE
+
+TIGER
+TABLE
+
+TIGER1
+TABLE
+
+
+12 rows selected.
+
+SQL> select * from hero;
+
+        NO NAME                                            SAL HIREDATE
+---------- ---------------------------------------- ---------- ---------
+         1 sdfgbfvgbn                                      333 12-FEB-19
+         2 sdfgbfvgbn                                     3345 12-FEB-19
+
+SQL>

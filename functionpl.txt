@@ -1,0 +1,396 @@
+create or replace function oddEven(a in number)
+
+ return number
+as
+begin
+if mod(a,2) = 0 then
+return 1;
+else
+return 0;
+end if;
+end;
+/
+select oddEven(12) from dual;
+------------------------------------------------------------------
+declare
+a number;
+begin
+a:=&a;
+a:=oddEven(a);
+end;
+-----------------------------------------------------------------------------------------
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Mon Oct 2 19:01:14 2017
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+SQL> conn
+Enter user-name: system
+Enter password:
+Connected.
+SQL> set serveroutput on;
+SQL> declare
+  2  a number;
+  3  b number;
+  4  c number;
+  5  begin
+  6  a:=&a;
+  7  b:=&b;
+  8  c:=a+b;
+  9  dbms_output.put_line('addition='||c);
+ 10  end;
+ 11  /
+Enter value for a: 2
+old   6: a:=&a;
+new   6: a:=2;
+Enter value for b: 5
+old   7: b:=&b;
+new   7: b:=5;
+addition=7
+
+PL/SQL procedure successfully completed.
+
+SQL> set serveroutput on;
+SQL> create or replace procedure addition
+  2  as
+  3  a number;
+  4  b number;
+  5  c number;
+  6  begin
+  7  a:=&a;
+  8  b:=&b;
+  9  c:=a+b;
+ 10  dbms_output.put_line('addition='||c);
+ 11  end;
+ 12  /
+Enter value for a: 45
+old   7: a:=&a;
+new   7: a:=45;
+Enter value for b: 78
+old   8: b:=&b;
+new   8: b:=78;
+
+Procedure created.
+
+SQL> execute addition
+addition=123
+
+PL/SQL procedure successfully completed.
+
+SQL> create or replace procedure findMax(a in number,b in number)
+  2  as
+  3  begin
+  4  if a>b then
+  5  dbms_output.line(a||'is max');
+  6  else
+  7  dbms_output.line(b||'is max');
+  8  end if;
+  9  end;
+ 10  /
+
+Warning: Procedure created with compilation errors.
+
+SQL> exec findMax(78,87);
+BEGIN findMax(78,87); END;
+
+      *
+ERROR at line 1:
+ORA-06550: line 1, column 7:
+PLS-00905: object SYSTEM.FINDMAX is invalid
+ORA-06550: line 1, column 7:
+PL/SQL: Statement ignored
+
+
+SQL> dbms_output.line(a||'is max');
+SP2-0734: unknown command beginning "dbms_outpu..." - rest of line ignored.
+SQL> SQL> create or replace procedure findMax(a in number,b in number)
+SP2-0734: unknown command beginning "SQL> creat..." - rest of line ignored.
+SQL>   2  as
+SQL>   3  begin
+SQL>   4  if a>b then
+SQL>   5  dbms_output.line(a||'is max');
+SQL>   6  else
+SQL>   7  dbms_output.line(b||'is max');
+SQL>   8  end if;
+SQL>   9  end;
+SQL>  10  /
+SQL>
+SQL> Warning: Procedure created with compilation errors.
+SP2-0734: unknown command beginning "Warning: P..." - rest of line ignored.
+SQL>
+SQL> SQL> exec findMax(78,87);
+SP2-0734: unknown command beginning "SQL> exec ..." - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL> BEGIN findMax(78,87); END;
+  2
+  3        *
+  4  ERROR at line 1:
+  5  ORA-06550: line 1, column 7:
+  6  PLS-00905: object SYSTEM.FINDMAX is invalid
+  7  ORA-06550: line 1, column 7:
+  8  PL/SQL: Statement ignored
+  9
+ 10
+ 11  /
+SP2-0552: Bind variable "PL" not declared.
+SQL> set serveroutput on;
+SQL> create or replace procedure findMax(a in number,b in number);
+  2  as
+  3
+  4  begin
+  5  if a>b then
+  6  dbms_output.put_line(a||'is max');
+  7  else
+  8  dbms_output.put_line(b||'is max');
+  9  end if;
+ 10  end;
+ 11  /
+
+Warning: Procedure created with compilation errors.
+
+SQL> execute findMax(78,87);
+BEGIN findMax(78,87); END;
+
+      *
+ERROR at line 1:
+ORA-06550: line 1, column 7:
+PLS-00905: object SYSTEM.FINDMAX is invalid
+ORA-06550: line 1, column 7:
+PL/SQL: Statement ignored
+
+
+SQL> set serveroutput on;
+SQL> create or replace procedure findmax(a in number,b in number);
+  2  as
+  3
+  4  begin
+  5  if a>b then
+  6  dbms_output.put_line(a||'is max');
+  7  else
+  8  dbms_output.put_line(b||'is max');
+  9  end if;
+ 10  end;
+ 11  /
+
+Warning: Procedure created with compilation errors.
+
+SQL> exec(78,780)
+BEGIN (78,780); END;
+
+      *
+ERROR at line 1:
+ORA-06550: line 1, column 7:
+PLS-00103: Encountered the symbol "(" when expecting one of the following:
+begin case declare exit for goto if loop mod null pragma
+raise return select update while with <an identifier>
+<a double-quoted delimited-identifier> <a bind variable> <<
+close current delete fetch lock insert open rollback
+savepoint set sql execute commit forall merge pipe
+The symbol "case" was substituted for "(" to continue.
+ORA-06550: line 1, column 15:
+PLS-00103: Encountered the symbol ";" when expecting one of the following:
+* & = - + < / > at in is mod remainder not rem when
+<an exponent (**)> <> or != or ~= >= <= <> and or like LIKE2_
+LIKE4_ LIKEC_ between overlaps || multi
+
+
+SQL> exec(78,780);
+BEGIN (78,780); END;
+
+      *
+ERROR at line 1:
+ORA-06550: line 1, column 7:
+PLS-00103: Encountered the symbol "(" when expecting one of the following:
+begin case declare exit for goto if loop mod null pragma
+raise return select update while with <an identifier>
+<a double-quoted delimited-identifier> <a bind variable> <<
+close current delete fetch lock insert open rollback
+savepoint set sql execute commit forall merge pipe
+The symbol "case" was substituted for "(" to continue.
+ORA-06550: line 1, column 15:
+PLS-00103: Encountered the symbol ";" when expecting one of the following:
+* & = - + < / > at in is mod remainder not rem when
+<an exponent (**)> <> or != or ~= >= <= <> and or like LIKE2_
+LIKE4_ LIKEC_ between overlaps || multi
+
+
+SQL> exec(78,780);
+BEGIN (78,780); END;
+
+      *
+ERROR at line 1:
+ORA-06550: line 1, column 7:
+PLS-00103: Encountered the symbol "(" when expecting one of the following:
+begin case declare exit for goto if loop mod null pragma
+raise return select update while with <an identifier>
+<a double-quoted delimited-identifier> <a bind variable> <<
+close current delete fetch lock insert open rollback
+savepoint set sql execute commit forall merge pipe
+The symbol "case" was substituted for "(" to continue.
+ORA-06550: line 1, column 15:
+PLS-00103: Encountered the symbol ";" when expecting one of the following:
+* & = - + < / > at in is mod remainder not rem when
+<an exponent (**)> <> or != or ~= >= <= <> and or like LIKE2_
+LIKE4_ LIKEC_ between overlaps || multi
+
+
+SQL> set serveroutput on;
+SQL> create or replace procedure findMax(a in number,b in number);
+  2  as
+  3
+  4  begin
+  5  if a>b then
+  6  dbms_output.put_line(a||'is max');
+  7  else
+  8  dbms_output.put_line(b||'is max');
+  9  end if;
+ 10  end;
+ 11  /
+
+Warning: Procedure created with compilation errors.
+
+SQL> set serveroutput on;
+SQL> create or replace procedure findMax(a in number,b in number);
+  2  as
+  3  begin
+  4  if a>b then
+  5  dbms_output.put_line(a||'is max');
+  6  else
+  7  dbms_output.put_line(b||'is max');
+  8  end if;
+  9  end;
+ 10  /
+
+Warning: Procedure created with compilation errors.
+
+SQL> set serveroutput on;
+SQL> create or replace procedure findMax(a in number,b in number)
+  2  as
+  3  begin
+  4  if a>b then
+  5  dbms_output.put_line(a||'is max');
+  6  else
+  7  dbms_output.put_line(b||'is max');
+  8  end if;
+  9  end;
+ 10  /
+
+Procedure created.
+
+SQL> exec findMax(78,87);
+87is max
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+  2  a number;
+  3  b number;
+  4  begin a:=&a;
+  5  b/eg
+  6  /
+Enter value for a: 23
+old   4: begin a:=&a;
+new   4: begin a:=23;
+b/eg
+ *
+ERROR at line 5:
+ORA-06550: line 5, column 2:
+PLS-00103: Encountered the symbol "/" when expecting one of the following:
+:= . ( @ % ;
+
+
+SQL> declare
+  2  a number;
+  3  b number;
+  4  begin
+  5  a:=&a;
+  6  b:=&b;
+  7  findMax(a,b);
+  8  end;
+  9  /
+Enter value for a: 789
+old   5: a:=&a;
+new   5: a:=789;
+Enter value for b: 90
+old   6: b:=&b;
+new   6: b:=90;
+789is max
+
+PL/SQL procedure successfully completed.
+
+SQL> create or replace function oddEven(a in number)
+  2  is
+  3   return number
+  4  begin
+  5  if mod(a,2)= 0 then
+  6  return 1;
+  7  else
+  8  return 0;
+  9  end if;
+ 10  end;
+ 11  /
+
+Warning: Function created with compilation errors.
+
+SQL> select oddEven(12) from dual;
+select oddEven(12) from dual
+       *
+ERROR at line 1:
+ORA-06575: Package or function ODDEVEN is in an invalid state
+
+
+SQL> create or replace function oddEven(a in number)
+  2  is
+  3   return number
+  4  begin
+  5  if mod(a,2) = 0 then
+  6  return 1;
+  7  else
+  8  return 0;
+  9  end if;
+ 10  end;
+ 11  /
+
+Warning: Function created with compilation errors.
+
+SQL> create or replace function oddEven(a in number)
+  2  as
+  3   return number
+  4  begin
+  5  if mod(a,2) = 0 then
+  6  return 1;
+  7  else
+  8  return 0;
+  9  end if;
+ 10  end;
+ 11  /
+
+Warning: Function created with compilation errors.
+
+SQL> create or replace function oddEven(a in number)
+  2
+  3   return number
+  4  as
+  5  begin
+  6  if mod(a,2) = 0 then
+  7  return 1;
+  8  else
+  9  return 0;
+ 10  end if;
+ 11  end;
+ 12  /
+
+Function created.
+
+SQL> select oddEven(12) from dual;
+
+ODDEVEN(12)
+-----------
+          1
+
+SQL> commit;
+
+Commit complete.
+
+SQL> commit;

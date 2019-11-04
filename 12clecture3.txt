@@ -1,0 +1,634 @@
+SQL> select sysdate,TO_CHAR(sysdate,'dd-mon-rr) from dual;
+ERROR:
+ORA-01756: quoted string not properly terminated 
+
+
+SQL> select sysdate,TO_CHAR(sysdate,'dd-mon-rr') from dual;
+
+SYSDATE   TO_CHAR(SYSDATE,'D                                                    
+--------- ------------------                                                    
+10-JAN-19 10-jan-19                                                             
+
+SQL> select sysdate,TO_CHAR(sysdate,'dd-month,rrrr day day') from dual;
+
+SYSDATE                                                                         
+---------                                                                       
+TO_CHAR(SYSDATE,'DD-MONTH,RRRRDAYDAY')                                          
+--------------------------------------------------------------------------------
+10-JAN-19                                                                       
+10-january  ,2019 thursday  thursday                                            
+                                                                                
+
+SQL> select sysdate,TO_CHAR(sysdate,'dd-month,rrrr day dy') from dual;
+
+SYSDATE                                                                         
+---------                                                                       
+TO_CHAR(SYSDATE,'DD-MONTH,RRRRDAYDY')                                           
+--------------------------------------------------------------------------------
+10-JAN-19                                                                       
+10-january  ,2019 thursday  thu                                                 
+                                                                                
+
+SQL> select sysdate,TO_CHAR(sysdate,'dd-month,rrrr Day Dy') from dual;
+
+SYSDATE                                                                         
+---------                                                                       
+TO_CHAR(SYSDATE,'DD-MONTH,RRRRDAYDY')                                           
+--------------------------------------------------------------------------------
+10-JAN-19                                                                       
+10-january  ,2019 Thursday  Thu                                                 
+                                                                                
+
+SQL> select sysdate,TO_CHAR(sysdate,'dd-month,rrrr DAY DY') from dual;
+
+SYSDATE                                                                         
+---------                                                                       
+TO_CHAR(SYSDATE,'DD-MONTH,RRRRDAYDY')                                           
+--------------------------------------------------------------------------------
+10-JAN-19                                                                       
+10-january  ,2019 THURSDAY  THU                                                 
+                                                                                
+
+SQL> select sysdate,TO_CHAR(sysdate,'dd-month-rrrr DAY DY') from dual;
+
+SYSDATE                                                                         
+---------                                                                       
+TO_CHAR(SYSDATE,'DD-MONTH-RRRRDAYDY')                                           
+--------------------------------------------------------------------------------
+10-JAN-19                                                                       
+10-january  -2019 THURSDAY  THU                                                 
+                                                                                
+
+SQL> select sysdate,TO_CHAR(sysdate,' FM dd-month-rrrr DAY DY') from dual;
+
+SYSDATE                                                                         
+---------                                                                       
+TO_CHAR(SYSDATE,'FMDD-MONTH-RRRRDAYDY')                                         
+--------------------------------------------------------------------------------
+10-JAN-19                                                                       
+  10-january-2019 THURSDAY THU                                                  
+                                                                                
+
+SQL> rem FM Format Model
+SQL> select sysdate,TO_CHAR(sysdate,' FM dd-month-rrrr DAY DY w ww') from dual;
+
+SYSDATE                                                                         
+---------                                                                       
+TO_CHAR(SYSDATE,'FMDD-MONTH-RRRRDAYDYWWW')                                      
+--------------------------------------------------------------------------------
+10-JAN-19                                                                       
+  10-january-2019 THURSDAY THU 2 2                                              
+                                                                                
+
+SQL> rem w-single week of month and ww- whole year week
+SQL> select sysdate,TO_CHAR(sysdate,' FM dd-month-rrrr DAY DY W WW') from dual;
+
+SYSDATE                                                                         
+---------                                                                       
+TO_CHAR(SYSDATE,'FMDD-MONTH-RRRRDAYDYWWW')                                      
+--------------------------------------------------------------------------------
+10-JAN-19                                                                       
+  10-january-2019 THURSDAY THU 2 2                                              
+                                                                                
+
+SQL> select sysdate,TO_CHAR(sysdate,' FM ddsp-month-rr') from dual;
+
+SYSDATE   TO_CHAR(SYSDATE,'FMDDSP-MONTH-RR')                                    
+--------- ------------------------------------------------------                
+10-JAN-19   ten-january-19                                                      
+
+SQL> select sysdate,TO_CHAR(sysdate,' FM ddsp-month-rr') as Detail from dual;
+
+SYSDATE   DETAIL                                                                
+--------- ------------------------------------------------------                
+10-JAN-19   ten-january-19                                                      
+
+SQL> select sysdate,TO_CHAR(sysdate,' FM ddth-month-rr') as Detail from dual;
+
+SYSDATE   DETAIL                                                                
+--------- ----------------------------------------------                        
+10-JAN-19   10th-january-19                                                     
+
+SQL> select sysdate,TO_CHAR(sysdate,' FM ddspth-month-rr') as Detail from dual;
+
+SYSDATE   DETAIL                                                                
+--------- --------------------------------------------------------              
+10-JAN-19   tenth-january-19                                                    
+
+SQL> select sysdate,TO_CHAR(sysdate,' FM ddthsp-month-rr') as Detail from dual;
+
+SYSDATE   DETAIL                                                                
+--------- --------------------------------------------------------              
+10-JAN-19   tenth-january-19                                                    
+
+SQL> select sysdate,TO_CHAR(sysdate,' FM ddthsp-month-year') as Detail from dual;
+
+SYSDATE                                                                         
+---------                                                                       
+DETAIL                                                                          
+--------------------------------------------------------------------------------
+10-JAN-19                                                                       
+  tenth-january-twenty nineteen                                                 
+                                                                                
+
+SQL> select sysdate,TO_CHAR(sysdate,' FM ddthsp-month-rrrrsp') as Detail from dual;
+
+SYSDATE                                                                         
+---------                                                                       
+DETAIL                                                                          
+--------------------------------------------------------------------------------
+10-JAN-19                                                                       
+  tenth-january-two thousand nineteen                                           
+                                                                                
+
+SQL> select sysdate,TO_CHAR(sysdate,' FM Ddthsp-month-rrrrsp') as Detail from dual;
+
+SYSDATE                                                                         
+---------                                                                       
+DETAIL                                                                          
+--------------------------------------------------------------------------------
+10-JAN-19                                                                       
+  Tenth-january-two thousand nineteen                                           
+                                                                                
+
+SQL> select sysdate,TO_CHAR(sysdate,' FM Ddthsp-MM-rrrrsp') as Detail from dual;
+
+SYSDATE   DETAIL                                                                
+--------- --------------------------------------------------------------        
+10-JAN-19   Tenth-1-two thousand nineteen                                       
+
+SQL> select sysdate,TO_CHAR(sysdate,' FM Ddth-MM-rrrrsp') as Detail from dual;
+
+SYSDATE   DETAIL                                                                
+--------- ----------------------------------------------------                  
+10-JAN-19   10th-1-two thousand nineteen                                        
+
+SQL> select sysdate,TO_CHAR(sysdate,' FM Ddth-Month-rrrrsp') as Detail from dual;
+
+SYSDATE                                                                         
+---------                                                                       
+DETAIL                                                                          
+--------------------------------------------------------------------------------
+10-JAN-19                                                                       
+  10th-January-two thousand nineteen                                            
+                                                                                
+
+SQL> select sysdate,TO_CHAR(sysdate,' FM Ddth-Rm-rrrrsp') as Detail from dual;
+
+SYSDATE   DETAIL                                                                
+--------- ------------------------------------------------------                
+10-JAN-19   10th-I-two thousand nineteen                                        
+
+SQL> select sysdate,TO_CHAR(sysdate,' FM Ddth-RM-rrrrsp') as Detail from dual;
+
+SYSDATE   DETAIL                                                                
+--------- ------------------------------------------------------                
+10-JAN-19   10th-I-two thousand nineteen                                        
+
+SQL> select sysdate,TO_CHAR(sysdate,' FM Ddth-RM-rrrsp') as Detail from dual;
+select sysdate,TO_CHAR(sysdate,' FM Ddth-RM-rrrsp') as Detail from dual
+                               *
+ERROR at line 1:
+ORA-01821: date format not recognized 
+
+
+SQL> select sysdate,TO_CHAR(sysdate,' FM Ddth-RM-yyysp') as Detail from dual;
+
+SYSDATE   DETAIL                                                                
+--------- ---------------------------------------                               
+10-JAN-19   10th-I-nineteen                                                     
+
+SQL> select sysdate,TO_CHAR(sysdate,' FM Ddth-RM-yyy') as Detail from dual;
+
+SYSDATE   DETAIL                                                                
+--------- ---------------                                                       
+10-JAN-19   10th-I-19                                                           
+
+SQL> select sysdate,TO_CHAR(sysdate,' FM Ddth-RM-yyyy') as Detail from dual;
+
+SYSDATE   DETAIL                                                                
+--------- ----------------                                                      
+10-JAN-19   10th-I-2019                                                         
+
+SQL> rem spool off path and then write append
+SQL> select sysdate,TO_CHAR(20000,'99999.99') as Detail from dual;
+
+SYSDATE   DETAIL                                                                
+--------- ---------                                                             
+10-JAN-19  20000.00                                                             
+
+SQL> select sysdate,TO_CHAR(20000,'99889.99') as Detail from dual;
+select sysdate,TO_CHAR(20000,'99889.99') as Detail from dual
+                             *
+ERROR at line 1:
+ORA-01481: invalid number format model 
+
+
+SQL> select sysdate,TO_CHAR(20000,'99009.99') as Detail from dual;
+
+SYSDATE   DETAIL                                                                
+--------- ---------                                                             
+10-JAN-19  20000.00                                                             
+
+SQL> rem 0 and 9 are valid
+SQL> select sysdate,TO_CHAR(20000,'000000.00') as Detail from dual;
+
+SYSDATE   DETAIL                                                                
+--------- ----------                                                            
+10-JAN-19  020000.00                                                            
+
+SQL> select sysdate,TO_CHAR(20000,'$00000.00') as Detail from dual;
+
+SYSDATE   DETAIL                                                                
+--------- ----------                                                            
+10-JAN-19  $20000.00                                                            
+
+SQL> select sysdate,TO_CHAR(20000,'Rs.00000.00') as Detail from dual;
+select sysdate,TO_CHAR(20000,'Rs.00000.00') as Detail from dual
+                             *
+ERROR at line 1:
+ORA-01481: invalid number format model 
+
+
+SQL> select sysdate,TO_CHAR(20000,'00000.00') as Detail from dual;
+
+SYSDATE   DETAIL                                                                
+--------- ---------                                                             
+10-JAN-19  20000.00                                                             
+
+SQL> select *  nls session from parameters;
+select *  nls session from parameters
+          *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> select *  NLSsession from parameters;
+select *  NLSsession from parameters
+          *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> select *  NLS session from parameters;
+select *  NLS session from parameters
+          *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> select *  NLS_session_parameters;
+select *  NLS_session_parameters
+          *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> select *  nls_session_parameters;
+select *  nls_session_parameters
+          *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> select *  from nls_session_parameters;
+
+PARAMETER                                                                       
+--------------------------------------------------------------------------------
+VALUE                                                                           
+--------------------------------------------------------------------------------
+NLS_LANGUAGE                                                                    
+AMERICAN                                                                        
+                                                                                
+NLS_TERRITORY                                                                   
+AMERICA                                                                         
+                                                                                
+NLS_CURRENCY                                                                    
+$                                                                               
+                                                                                
+
+PARAMETER                                                                       
+--------------------------------------------------------------------------------
+VALUE                                                                           
+--------------------------------------------------------------------------------
+NLS_ISO_CURRENCY                                                                
+AMERICA                                                                         
+                                                                                
+NLS_NUMERIC_CHARACTERS                                                          
+.,                                                                              
+                                                                                
+NLS_CALENDAR                                                                    
+GREGORIAN                                                                       
+                                                                                
+
+PARAMETER                                                                       
+--------------------------------------------------------------------------------
+VALUE                                                                           
+--------------------------------------------------------------------------------
+NLS_DATE_FORMAT                                                                 
+DD-MON-RR                                                                       
+                                                                                
+NLS_DATE_LANGUAGE                                                               
+AMERICAN                                                                        
+                                                                                
+NLS_SORT                                                                        
+BINARY                                                                          
+                                                                                
+
+PARAMETER                                                                       
+--------------------------------------------------------------------------------
+VALUE                                                                           
+--------------------------------------------------------------------------------
+NLS_TIME_FORMAT                                                                 
+HH.MI.SSXFF AM                                                                  
+                                                                                
+NLS_TIMESTAMP_FORMAT                                                            
+DD-MON-RR HH.MI.SSXFF AM                                                        
+                                                                                
+NLS_TIME_TZ_FORMAT                                                              
+HH.MI.SSXFF AM TZR                                                              
+                                                                                
+
+PARAMETER                                                                       
+--------------------------------------------------------------------------------
+VALUE                                                                           
+--------------------------------------------------------------------------------
+NLS_TIMESTAMP_TZ_FORMAT                                                         
+DD-MON-RR HH.MI.SSXFF AM TZR                                                    
+                                                                                
+NLS_DUAL_CURRENCY                                                               
+$                                                                               
+                                                                                
+NLS_COMP                                                                        
+BINARY                                                                          
+                                                                                
+
+PARAMETER                                                                       
+--------------------------------------------------------------------------------
+VALUE                                                                           
+--------------------------------------------------------------------------------
+NLS_LENGTH_SEMANTICS                                                            
+BYTE                                                                            
+                                                                                
+NLS_NCHAR_CONV_EXCP                                                             
+FALSE                                                                           
+                                                                                
+
+17 rows selected.
+
+SQL> alter session set nls_currency='Rs.';
+
+Session altered.
+
+SQL> alter session set nls_currency='L';
+
+Session altered.
+
+SQL> select sysdate,TO_CHAR(20000,'00000.00') as Detail from dual;
+
+SYSDATE   DETAIL                                                                
+--------- ---------                                                             
+10-JAN-19  20000.00                                                             
+
+SQL> alter session set nls_currency='Rs.';
+
+Session altered.
+
+SQL> select sysdate,TO_CHAR(20000,'l00000.00') as Detail from dual;
+
+SYSDATE   DETAIL                                                                
+--------- -------------------                                                   
+10-JAN-19         Rs.20000.00                                                   
+
+SQL> select sysdate,TO_CHAR(20000,'u00000.00') as Detail from dual;
+
+SYSDATE   DETAIL                                                                
+--------- -------------------                                                   
+10-JAN-19           $20000.00                                                   
+
+SQL> select *  from nls_session_parameters;
+
+PARAMETER                                                                       
+--------------------------------------------------------------------------------
+VALUE                                                                           
+--------------------------------------------------------------------------------
+NLS_LANGUAGE                                                                    
+AMERICAN                                                                        
+                                                                                
+NLS_TERRITORY                                                                   
+AMERICA                                                                         
+                                                                                
+NLS_CURRENCY                                                                    
+Rs.                                                                             
+                                                                                
+
+PARAMETER                                                                       
+--------------------------------------------------------------------------------
+VALUE                                                                           
+--------------------------------------------------------------------------------
+NLS_ISO_CURRENCY                                                                
+AMERICA                                                                         
+                                                                                
+NLS_NUMERIC_CHARACTERS                                                          
+.,                                                                              
+                                                                                
+NLS_CALENDAR                                                                    
+GREGORIAN                                                                       
+                                                                                
+
+PARAMETER                                                                       
+--------------------------------------------------------------------------------
+VALUE                                                                           
+--------------------------------------------------------------------------------
+NLS_DATE_FORMAT                                                                 
+DD-MON-RR                                                                       
+                                                                                
+NLS_DATE_LANGUAGE                                                               
+AMERICAN                                                                        
+                                                                                
+NLS_SORT                                                                        
+BINARY                                                                          
+                                                                                
+
+PARAMETER                                                                       
+--------------------------------------------------------------------------------
+VALUE                                                                           
+--------------------------------------------------------------------------------
+NLS_TIME_FORMAT                                                                 
+HH.MI.SSXFF AM                                                                  
+                                                                                
+NLS_TIMESTAMP_FORMAT                                                            
+DD-MON-RR HH.MI.SSXFF AM                                                        
+                                                                                
+NLS_TIME_TZ_FORMAT                                                              
+HH.MI.SSXFF AM TZR                                                              
+                                                                                
+
+PARAMETER                                                                       
+--------------------------------------------------------------------------------
+VALUE                                                                           
+--------------------------------------------------------------------------------
+NLS_TIMESTAMP_TZ_FORMAT                                                         
+DD-MON-RR HH.MI.SSXFF AM TZR                                                    
+                                                                                
+NLS_DUAL_CURRENCY                                                               
+$                                                                               
+                                                                                
+NLS_COMP                                                                        
+BINARY                                                                          
+                                                                                
+
+PARAMETER                                                                       
+--------------------------------------------------------------------------------
+VALUE                                                                           
+--------------------------------------------------------------------------------
+NLS_LENGTH_SEMANTICS                                                            
+BYTE                                                                            
+                                                                                
+NLS_NCHAR_CONV_EXCP                                                             
+FALSE                                                                           
+                                                                                
+
+17 rows selected.
+
+SQL> select sysdate,TO_CHAR(20000,'00G000D.00') as Detail from dual;
+select sysdate,TO_CHAR(20000,'00G000D.00') as Detail from dual
+                             *
+ERROR at line 1:
+ORA-01481: invalid number format model 
+
+
+SQL> select sysdate,TO_CHAR(20000,'G00000D.00') as Detail from dual;
+select sysdate,TO_CHAR(20000,'G00000D.00') as Detail from dual
+                             *
+ERROR at line 1:
+ORA-01481: invalid number format model 
+
+
+SQL> select sysdate,TO_CHAR(20000,'00G000D.00') as Detail from dual;
+select sysdate,TO_CHAR(20000,'00G000D.00') as Detail from dual
+                             *
+ERROR at line 1:
+ORA-01481: invalid number format model 
+
+
+SQL> select sysdate,TO_CHAR(20000,'000G00D.00') as Detail from dual;
+select sysdate,TO_CHAR(20000,'000G00D.00') as Detail from dual
+                             *
+ERROR at line 1:
+ORA-01481: invalid number format model 
+
+
+SQL> select sysdate,TO_CHAR(20000,'000G00D00') as Detail from dual;
+
+SYSDATE   DETAIL                                                                
+--------- ----------                                                            
+10-JAN-19  200,00.00                                                            
+
+SQL> select sysdate,TO_number(20000.00,'9999') as Detail from dual;
+select sysdate,TO_number(20000.00,'9999') as Detail from dual
+                         *
+ERROR at line 1:
+ORA-01722: invalid number 
+
+
+SQL> select sysdate,TO_number('20000.00','9999') as Detail from dual;
+select sysdate,TO_number('20000.00','9999') as Detail from dual
+                         *
+ERROR at line 1:
+ORA-01722: invalid number 
+
+
+SQL> select sysdate,TO_number('20000.00','9999.00') as Detail from dual;
+select sysdate,TO_number('20000.00','9999.00') as Detail from dual
+                         *
+ERROR at line 1:
+ORA-01722: invalid number 
+
+
+SQL> select sysdate,TO_number('2000.00','9999.00') as Detail from dual;
+
+SYSDATE       DETAIL                                                            
+--------- ----------                                                            
+10-JAN-19       2000                                                            
+
+SQL> select sysdate,TO_number('2300.34','9999.00') as Detail from dual;
+
+SYSDATE       DETAIL                                                            
+--------- ----------                                                            
+10-JAN-19    2300.34                                                            
+
+SQL> select sysdate,TO_number('2300.34','9999GD00') as Detail from dual;
+select sysdate,TO_number('2300.34','9999GD00') as Detail from dual
+                         *
+ERROR at line 1:
+ORA-01722: invalid number 
+
+
+SQL> select sysdate,TO_number('2300.34','999G9D00') as Detail from dual;
+select sysdate,TO_number('2300.34','999G9D00') as Detail from dual
+                         *
+ERROR at line 1:
+ORA-01722: invalid number 
+
+
+SQL> select sysdate,TO_number('2300.34','9G999D00') as Detail from dual;
+select sysdate,TO_number('2300.34','9G999D00') as Detail from dual
+                         *
+ERROR at line 1:
+ORA-01722: invalid number 
+
+
+SQL> select sysdate,TO_number('230034','9G999D00') as Detail from dual;
+select sysdate,TO_number('230034','9G999D00') as Detail from dual
+                         *
+ERROR at line 1:
+ORA-01722: invalid number 
+
+
+SQL> select sysdate,TO_number('2300.34','9999D00') as Detail from dual;
+
+SYSDATE       DETAIL                                                            
+--------- ----------                                                            
+10-JAN-19    2300.34                                                            
+
+SQL> select sysdate,TO_number('2,300.34','9G999D00') as Detail from dual;
+
+SYSDATE       DETAIL                                                            
+--------- ----------                                                            
+10-JAN-19    2300.34                                                            
+
+SQL> select sysdate,TO_Date('2019-jan-10','RRRR-mon-dd') as Detail from dual;
+
+SYSDATE   DETAIL                                                                
+--------- ---------                                                             
+10-JAN-19 10-JAN-19                                                             
+
+SQL> select sysdate,TO_Date('2019-Jan-10','RRRR-mon-dd') as Detail from dual;
+
+SYSDATE   DETAIL                                                                
+--------- ---------                                                             
+10-JAN-19 10-JAN-19                                                             
+
+SQL> select sysdate,TO_Date('2019-Jan-10','RRRR-Mon-dd') as Detail from dual;
+
+SYSDATE   DETAIL                                                                
+--------- ---------                                                             
+10-JAN-19 10-JAN-19                                                             
+
+SQL> select sysdate,TO_Date('2019-Jan-10','RRRR-mnn-dd') as Detail from dual;
+select sysdate,TO_Date('2019-Jan-10','RRRR-mnn-dd') as Detail from dual
+                                     *
+ERROR at line 1:
+ORA-01821: date format not recognized 
+
+
+SQL> select sysdate,TO_Date('2019-Jan-10','RRRR-mon-dd') as Detail from dual;
+
+SYSDATE   DETAIL                                                                
+--------- ---------                                                             
+10-JAN-19 10-JAN-19                                                             
+
+SQL> rem NULLL- NUl NVL2 NULLIF
+SQL> rem conditional expression case decode
+SQL> spool off
